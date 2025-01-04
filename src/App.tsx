@@ -1,6 +1,8 @@
+import {Router} from "./components/Router.tsx"
+
 function App() {
   return (
-     <h1 className={"font-black text-6xl"}> sigma </h1>
+     <Router/>
   )
 }
 export default App
