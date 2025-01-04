@@ -6,6 +6,8 @@ export default {
   ],
   theme: {
     colors:{
+      "lightgrey": "#AAAAAA",
+      "true-white":"#FFFFFF",
       "white": "#F0F0F0",
       "black": "#1E1E1B",
       "primary-dark":"#000814",
@@ -13,8 +15,10 @@ export default {
       "primary-light":"#003566",
       "secondary-medium":"#FFC40D",
       "secondary-light":"#FFD60A",
+      "secondary-transparent":"rgba(255,214,10,0.5)",
     },
     extend: {},
   },
   plugins: [],
 }
+

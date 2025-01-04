@@ -1,8 +1,9 @@
+import {ManFront} from "../components/ManFront.tsx";
+
 export const Home = () => {
     return(
-        <>
-            <div className="bg-secondary-light">abc</div>
-
-        </>
+        <main className="flex p-10 h-[calc(100vh-5rem)]">
+           <ManFront/>
+        </main>
     )
 }
