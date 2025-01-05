@@ -20,7 +20,7 @@ export const NavBar = () => {
             </aside>
             <header className="h-20  w-screen  bg-primary-dark fixed
               flex items-center justify-between">
-                <img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png" alt="SamsonWiki"/>
+                <Link to="/"><img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png" alt="SamsonWiki"/></Link>
                 <button className="h-16 w-16 mr-10 bg-primary-light rounded-full"></button>
             </header>
 
