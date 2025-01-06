@@ -1,4 +1,5 @@
 import {ManFront} from "../components/ManFront.tsx";
+import {ManBack} from "../components/ManBack.tsx";
 import {storage} from "../lib/firebase.ts";
 import {ref, getDownloadURL} from "firebase/storage"
 import {useEffect, useState} from "react";
@@ -15,14 +16,14 @@ export const Home = () => {
         })
     },[])
     return(
-        <main className="flex p-10 h-[calc(100vh-5rem)]">
-           <ManFront/>
-            {url?
-                <video width="320" height="240" autoPlay controls>
-                    <source src={url} type="video/mp4" />
-                </video>
-            :null}
-
+        <main className="flex gap-20 p-10 h-[calc(100vh-5rem)]">
+            <ManFront/>
+            <ManBack/>
         </main>
     )
 }
+// {/*{url?*/}
+// {/*    <video width="300" height="300"  autoPlay loop>*/}
+// {/*        <source src={url} type="video/mp4" />*/}
+// {/*    </video>*/}
+// {/*:null}*/}
