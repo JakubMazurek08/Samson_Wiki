@@ -1,7 +1,7 @@
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import {Home} from "../pages/Home.tsx";
 import {NavBar} from "../pages/NavBar.tsx";
-import {NewExercisePage} from "../pages/newExercisePage.tsx";
+import {NewExercisePage} from "../pages/NewExercisePage.tsx";
 
 const router = createBrowserRouter([
     {
