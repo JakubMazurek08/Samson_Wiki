@@ -7,7 +7,7 @@ export const NavBar = () => {
         <>
             <aside className="flex flex-col w-80 h-screen bg-primary-medium fixed">
                 <NavButton label="Training Plans" icon="/src/assets/icons/planning.png" isSmall={false}/>
-                <NavButton label="Exercises" icon="/src/assets/icons/dumbbell.png" isSmall={false}/>
+                <NavButton label="ExercisesByMuscle" icon="/src/assets/icons/dumbbell.png" isSmall={false}/>
                 <div className="flex flex-col p-2 pl-4 py-4 border-b-4 border-secondary-light">
                     <div className="flex items-center gap-4">
                         <img className="w-12 h-12 " src={"/src/assets/icons/wrench.png"} alt="icon"/>
