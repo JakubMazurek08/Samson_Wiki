@@ -2,6 +2,7 @@ import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import {Home} from "../pages/Home.tsx";
 import {NavBar} from "../pages/NavBar.tsx";
 import {NewExercisePage} from "../pages/NewExercisePage.tsx";
+import {ExercisesByMuscle} from "../pages/ExercisesByMuscle.tsx";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: "/admin",
                 element: <NewExercisePage/>
+            },
+            {
+                path:"/exercises/:muscle",
+                element: <ExercisesByMuscle/>
             }
         ]
     },

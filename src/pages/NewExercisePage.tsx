@@ -37,6 +37,10 @@ export const NewExercisePage = () => {
                 <TextInput name={"video1"} label={"video 1 name"} register={register}/>
                 <TextInput name={"video2"} label={"video 2 name"} register={register}/>
 
+                <TextInput name={"step1"} label={"step 1"} register={register}/>
+                <TextInput name={"step2"} label={"step 2"} register={register}/>
+                <TextInput name={"step3"} label={"step 3"} register={register}/>
+
                 </div>
                 <button className="p-2 w-20 rounded-2xl bg-primary-medium text-white font-bold hover:scale-110 transition-all duration-300" type={"submit"}>ADD</button>
             </form>
@@ -71,6 +75,9 @@ const MuscleInput = ({name,label,register}) => {
                 <option value="abs">Abs</option>
                 <option value="obliques">Obliques</option>
                 <option value="glutes">Glutes</option>
+                <option value="upper-back">Upper back</option>
+                <option value="lower-back">Lower back</option>
+                <option value="traps">Traps</option>
             </select>
         </div>
     )
