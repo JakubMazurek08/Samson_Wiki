@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
-import {Simulate} from "react-dom/test-utils";
 import {useFilter} from "../contexts/useFilter.ts";
 
 export const EquipmentFilterDropdown = () => {
@@ -15,7 +14,6 @@ export const EquipmentFilterDropdown = () => {
             }
         });
         updateFilters(filters);
-
     }
 
     useEffect(() => {
@@ -25,8 +23,8 @@ export const EquipmentFilterDropdown = () => {
     return (
         <div className={"flex flex-col items-center"}>
             <button onClick={()=>{setToggle(prevState=>!prevState)}} className={`flex bg-primary-medium w-56 h-14 ${toggle?"rounded-t-2xl border-secondary-light border-b-2":"rounded-2xl"} items-center`}>
-                <span className={"text-white font-bold text-2xl ml-2"}>Filtruj Ćwiczenia</span>
-                <img src="../assets/icons/down-arrow.png" alt=""/>
+                <span className={"text-white font-bold text-2xl ml-2"}>Filter Exercises</span>
+                <img className={`h-8 w-8 mt-2 ml-2 ${toggle?"rotate-180":"rotate-0"}`} src="/src/assets/icons/down-arrow.png" alt=""/>
             </button>
             {
             toggle?
@@ -47,9 +45,9 @@ export const EquipmentFilterDropdown = () => {
 
 const CheckBox = ({label, name,register})  => {
     return(
-    <div className={"px-2 my-3 border-secondary-light border-b-2"}>
-        <input className="text-white mr-4" type="checkbox" {...register(name)} />
-        <span className={"text-white text-xl"}>{label}</span>
-    </div>
+        <div className={"px-2 my-3"}>
+            <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
+            <span className={"text-white text-xl"}>{label}</span>
+        </div>
     )
 }

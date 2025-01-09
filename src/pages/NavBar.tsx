@@ -1,8 +1,9 @@
 import {Outlet, Link} from "react-router-dom";
 import {auth} from "../lib/firebase.ts";
+import {useState} from "react";
 
 export const NavBar = () => {
-
+    const [toggleLoginOptions, setToggleLoginOptions] = useState(false);
     return (
         <>
             <aside className="flex flex-col w-80 h-screen bg-primary-medium fixed">
@@ -18,10 +19,20 @@ export const NavBar = () => {
                     <NavButton label="1 Rep Max Calculator" isSmall={true}/>
                 </div>
             </aside>
-            <header className="h-20  w-screen  bg-primary-dark fixed
+            <header className="h-20  w-screen  bg-primary-dark fixed z-50
               flex items-center justify-between">
                 <Link to="/"><img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png" alt="SamsonWiki"/></Link>
-                <button className="h-16 w-16 mr-10 bg-primary-light rounded-full"></button>
+                <img onClick={()=>{setToggleLoginOptions((prevState)=>!prevState)}} className="h-16 w-16 mr-10 bg-secondary-light rounded-full" src="/src/assets/icons/user(1).png" alt=""/>
+                {toggleLoginOptions?
+                    <div className={'border-primary-light border-2 rounded-md bg-true-white w-20 absolute right-20 top-10'}>
+                        <button className={"p-2"}>
+                        login
+                        </button>
+                        <button className={"p-2"}>
+                        register
+                        </button>
+                    </div>
+                :null}
             </header>
 
             <main className="pt-20 ml-80">
