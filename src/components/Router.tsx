@@ -4,6 +4,7 @@ import {NavBar} from "../pages/NavBar.tsx";
 import {NewExercisePage} from "../pages/NewExercisePage.tsx";
 import {ExercisesByMuscle} from "../pages/ExercisesByMuscle.tsx";
 
+
 const router = createBrowserRouter([
     {
         path:"/",
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
                 path:"/exercises/:muscle",
                 element: <ExercisesByMuscle/>
             }
-        ]
+    {
+        path:"*",
+        element: <ErrorPage />
     },
 ])
 
