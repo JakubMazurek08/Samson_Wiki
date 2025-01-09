@@ -20,6 +20,12 @@ export default {
       "red-transparent":"rgba(255,8,0,0.5)",
       "orange-transparent":"rgba(255,93,0,0.5)",
     },
+    fontFamily: {
+      'sans': ['ui-sans-serif', 'system-ui'],
+      'serif': ['ui-serif', 'Georgia'],
+      'mono': ['ui-monospace', 'SFMono-Regular'],
+      'playfair' : ['Playfair Display'],
+    },
     extend: {},
   },
   plugins: [],

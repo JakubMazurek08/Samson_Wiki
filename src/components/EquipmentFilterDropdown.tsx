@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
-import {Simulate} from "react-dom/test-utils";
 import {useFilter} from "../contexts/useFilter.ts";
 
 export const EquipmentFilterDropdown = () => {
@@ -15,7 +14,6 @@ export const EquipmentFilterDropdown = () => {
             }
         });
         updateFilters(filters);
-
     }
 
     useEffect(() => {
@@ -47,9 +45,9 @@ export const EquipmentFilterDropdown = () => {
 
 const CheckBox = ({label, name,register})  => {
     return(
-    <div className={"px-2 my-3 border-secondary-light border-b-2"}>
-        <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
-        <span className={"text-white text-xl"}>{label}</span>
-    </div>
+        <div className={"px-2 my-3"}>
+            <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
+            <span className={"text-white text-xl"}>{label}</span>
+        </div>
     )
 }
