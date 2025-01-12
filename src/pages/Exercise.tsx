@@ -5,23 +5,14 @@ import {SmallMuscleDisplay} from "../components/SmallMuscleDisplay.tsx";
 import LottieView from 'lottie-react';
 import loadingVideoJson from "../assets/animations/loadingVideo.json"
 
-
-function capitalizeWords(inputString) {
-    return inputString
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-}
-
 export const Exercise = ({exerciseData}) => {
     const lottieRef = useRef();
     const [url1,setUrl1] = useState("");
     const [url2,setUrl2] = useState("");
     const [toggle, setToggle] = useState(false);
-
     useEffect(()=>{
-        const storageRef1 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.video1}.mp4` );
-        const storageRef2 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.video2}.mp4` );
+        const storageRef1 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.name}-1.mp4` );
+        const storageRef2 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.name}-2.mp4` );
 
         getDownloadURL(storageRef1).then((url)=>{
             setUrl1(url);
@@ -34,9 +25,9 @@ export const Exercise = ({exerciseData}) => {
 
 
     return (
-        <div className={`relative h-[550px]`}>
+        <div className={`relative min-h-[550px]`}>
             <div className={`bg-white rounded-l-3xl ${!toggle?"rounded-r-3xl":null} transition-all duration-300 h-full`}>
-                <div className={`bg-primary-light rounded-tl-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} h-16 flex pl-8 items-center`}> <h1 className={"text-secondary-light font-bold text-4xl"}>{capitalizeWords(exerciseData.name)}</h1></div>
+                <div className={`bg-primary-light rounded-tl-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} h-16 flex pl-8 items-center`}> <h1 className={"text-secondary-light font-bold text-4xl"}>{exerciseData.name}</h1></div>
                 <div className={"flex justify-between items-center mb-8"}>
                     {url1?
                         <video className="bg-white border-primary-light w-[47.5%] aspect-video rounded-b-xl"     autoPlay loop>
@@ -82,9 +73,9 @@ const ExerciseInfoDisplay = ({grip,force,difficulty}) => {
                 <h1 className={"text-2xl font-bold text-primary-medium"}>Grip</h1>
             </div>
             <div className={"border-primary-medium p-4"}>
-                <h1 className={"text-2xl text-primary-medium"}>{capitalizeWords(difficulty)}</h1>
-                <h1 className={"text-2xl text-primary-medium"}>{capitalizeWords(force)}</h1>
-                <h1 className={"text-2xl text-primary-medium"}>{capitalizeWords(grip)}</h1>
+                <h1 className={"text-2xl text-primary-medium"}>{difficulty}</h1>
+                <h1 className={"text-2xl text-primary-medium"}>{force}</h1>
+                <h1 className={"text-2xl text-primary-medium"}>{grip}</h1>
             </div>
         </div>
     )
