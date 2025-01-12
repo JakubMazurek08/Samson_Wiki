@@ -1,6 +1,6 @@
 import {db} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
-import {collection,query,where,and,getDocs} from "firebase/firestore"
+import {collection,query,where,and,or,getDocs} from "firebase/firestore"
 import {useParams} from "react-router-dom";
 import {Exercise} from "./Exercise.tsx";
 import {v4} from "uuid";
@@ -24,7 +24,7 @@ export const ExercisesByMuscle = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const q = query(collection(db,"exercises"),and(where("primary","==",muscle),where("equipment","in",selectedFilters)))
+            const q = query(collection(db,"exercises"),and(or(where("primary","==",muscle),where("secondary","==",muscle),where("ternary","==",muscle)),where("equipment","in",selectedFilters)))
             const querySnapshot = await getDocs(q);
             const newData = [];
             querySnapshot.forEach((doc) => {
