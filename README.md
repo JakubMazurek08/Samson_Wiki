@@ -5,3 +5,5 @@ Jakub Mazurek
 Jakub Leśniak
 
 Michał Karwacki
+
+Sławek Kruszyński
