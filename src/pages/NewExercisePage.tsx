@@ -89,6 +89,7 @@ const MuscleInput = ({name, label, register, errors}) => {
                 <option value="upper-back">Upper back</option>
                 <option value="lower-back">Lower back</option>
                 <option value="traps">Traps</option>
+                <option value="lats">Lats</option>
             </select>
             {errors[name] && errors[name].message && (
                 <h1 className="text-xl font-bold text-red-transparent">
