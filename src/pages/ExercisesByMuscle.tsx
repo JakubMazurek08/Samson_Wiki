@@ -63,14 +63,14 @@ export const ExercisesByMuscle = () => {
                 <form className={"bg-primary-light"}>
                     <div className={"flex justify-between relative"}>
                         <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
-                        <CheckBox label={"Dumbbell"} name={"dumbell"} register={register}/>
+                        <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
                     </div>
                     <div className={"flex justify-between relative"}>
                         <CheckBox label={"Machine"} name={"machine"} register={register}/>
                         <CheckBox label={"Cables"} name={"cables"} register={register}/>
                     </div>
                     <div className={"flex justify-between relative"}>
-                        <CheckBox label={"Smith machine"} name={"Smitch machine"} register={register}/>
+                        <CheckBox label={"Smith machine"} name={"smith machine"} register={register}/>
                         <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
                     </div>
                 </form>

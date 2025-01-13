@@ -1,9 +1,12 @@
 import {Outlet, Link} from "react-router-dom";
 import {auth} from "../lib/firebase.ts";
 import {useState} from "react";
+import * as domain from "node:domain";
+
+const user = auth.currentUser;
 
 export const NavBar = () => {
-    const [toggleLoginOptions, setToggleLoginOptions] = useState(false);
+    const [isLoggingIn, setIsLoggingIn] = useState(false);
     return (
         <>
             <aside className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 -translate-x-80 lg:translate-x-0">
@@ -19,25 +22,24 @@ export const NavBar = () => {
                     <NavButton label="1 Rep Max Calculator" isSmall={true}/>
                 </div>
             </aside>
-            <header className="h-20  w-screen  bg-primary-dark fixed z-50
+            <header className="h-20  w-screen  bg-primary-dark fixed z-40
               flex items-center justify-between">
                 <Link to="/"><img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png" alt="SamsonWiki"/></Link>
-                <img onClick={()=>{setToggleLoginOptions((prevState)=>!prevState)}} className="h-16 w-16 mr-10 bg-secondary-light rounded-full" src="/src/assets/icons/user(1).png" alt=""/>
-                {toggleLoginOptions?
-                    <div className={'border-primary-light border-2 rounded-md bg-true-white w-20 absolute right-20 top-10'}>
-                        <button className={"p-2"}>
-                        login
-                        </button>
-                        <button className={"p-2"}>
-                        register
-                        </button>
-                    </div>
-                :null}
+                {user ?
+                    <img className="h-16 w-16 mr-10 bg-secondary-light rounded-full" src="/src/assets/icons/user(1).png"/>  :
+                    <button onClick={()=>{setIsLoggingIn(true)}} className="mr-10 text-white font-bold p-2 w-20 bg-primary-medium rounded-full hover:scale-110 transition-all duration-300 border-2 border-secondary-light">Login</button>
+                }
             </header>
 
             <main className="pt-20 lg:ml-80">
                 <Outlet/>
             </main>
+
+            {/*{isLoggingIn ?*/}
+            {/*    <main className={"fixed h-screen  w-screen flex items-center justify-center bg-primary-transparent z-50"}>*/}
+            {/*        SKIBIDI*/}
+            {/*    </main>*/}
+            {/*:null}*/}
         </>
     )
 }
