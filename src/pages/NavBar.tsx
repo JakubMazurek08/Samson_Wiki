@@ -6,7 +6,7 @@ export const NavBar = () => {
     const [toggleLoginOptions, setToggleLoginOptions] = useState(false);
     return (
         <>
-            <aside className="flex flex-col w-80 h-screen bg-primary-medium fixed">
+            <aside className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 -translate-x-80 lg:translate-x-0">
                 <NavButton label="Training Plans" icon="/src/assets/icons/planning.png" isSmall={false}/>
                 <NavButton label="ExercisesByMuscle" icon="/src/assets/icons/dumbbell.png" isSmall={false}/>
                 <div className="flex flex-col p-2 pl-4 py-4 border-b-4 border-secondary-light">
@@ -35,7 +35,7 @@ export const NavBar = () => {
                 :null}
             </header>
 
-            <main className="pt-20 ml-80">
+            <main className="pt-20 lg:ml-80">
                 <Outlet/>
             </main>
         </>

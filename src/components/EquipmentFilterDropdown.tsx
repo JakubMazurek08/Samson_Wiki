@@ -21,7 +21,7 @@ export const EquipmentFilterDropdown = () => {
         return () => subscription.unsubscribe();
     }, [handleSubmit,watch]);
     return (
-        <div className={"flex flex-col items-center"}>
+        <div className={" flex-col items-center hidden md:flex"}>
             <button onClick={()=>{setToggle(prevState=>!prevState)}} className={`flex bg-primary-medium w-56 h-14 ${toggle?"rounded-t-2xl border-secondary-light border-b-2":"rounded-2xl"} items-center`}>
                 <span className={"text-white font-bold text-2xl ml-2"}>Filter Exercises</span>
                 <img className={`h-8 w-8 mt-2 ml-2 ${toggle?"rotate-180":"rotate-0"}`} src="/src/assets/icons/down-arrow.png" alt=""/>
