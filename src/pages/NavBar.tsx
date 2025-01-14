@@ -15,7 +15,8 @@ export const NavBar = () => {
                         <img className="w-8 h-8 ml-12" src={"/src/assets/icons/down-arrow.png"} alt="arrow"/>
                     </div>
                     <NavButton label="Calorie Calculator" isSmall={true}/>
-                    <NavButton label="1 Rep Max Calculator" isSmall={true}/>
+                    <NavButton label="1 Rep Max Calculator" isSmall={true} linkTo={"/OneRep"}/>
+
                 </div>
             </aside>
             <header className="h-20  w-screen  bg-primary-dark fixed
