@@ -1,6 +1,6 @@
-export const SmallMuscleDisplay = ({primary, secondary, ternary, selected, isClickable}) => {
+export const SmallMuscleDisplay = ({primary, secondary, ternary}) => {
     return(
-        <div className={"flex h-[300px] gap-8"}>
+        <div className={"flex h-[300px] gap-8 w-full"}>
             <svg className={"stroke-primary-dark fill-true-white"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.16 778.69">
                 <g id="traps" className={`${primary=="traps"?"fill-red-transparent":null} ${secondary=="traps"?"fill-orange-transparent":null} ${ternary=="traps"?"fill-secondary-transparent":null}`}>
                     <path d="M148.05,136.2l3.52-2.91c.61-.5,1.23-.97,1.88-1.41l2.85-1.93c1.76-1.19,3.64-2.18,5.62-2.96l5.03-1.98,8.02-3.41c.19-.08.37-.17.54-.26l3.05-1.64,2.41-1.72c.86-.61,1.67-1.3,2.41-2.04l2.32-2.32,1.11-1.28.2,17.87c0,.48-.08.96-.25,1.41l-.59,1.6c-.25.68-.65,1.31-1.16,1.83l-2.92,2.96-2.76,1.7c-.68.42-1.45.66-2.24.69l-1.92.09c-.85.04-1.71-.08-2.51-.36l-2.86-.99c-.4-.14-.81-.26-1.22-.35l-4.22-.98c-.69-.16-1.38-.28-2.08-.37l-5.47-.69c-.59-.07-1.18-.12-1.78-.15l-6.13-.26-.85-.13Z"/>
