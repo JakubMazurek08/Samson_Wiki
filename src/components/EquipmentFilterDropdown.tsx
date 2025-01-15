@@ -30,10 +30,10 @@ export const EquipmentFilterDropdown = () => {
             toggle?
                 <form className={"w-56 rounded-b-2xl bg-primary-light"}>
                     <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
-                    <CheckBox label={"Dumbbell"} name={"dumbell"} register={register}/>
+                    <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
                     <CheckBox label={"Machine"} name={"machine"} register={register}/>
                     <CheckBox label={"Cables"} name={"cables"} register={register}/>
-                    <CheckBox label={"smith machine"} name={"Smitch machine"} register={register}/>
+                    <CheckBox label={"smith machine"} name={"smith machine"} register={register}/>
                     <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
                 </form>
             :
@@ -44,9 +44,13 @@ export const EquipmentFilterDropdown = () => {
 }
 
 const CheckBox = ({label, name,register})  => {
+    const {selectedFilters} = useFilter();
+    const isChecked = selectedFilters.includes(name);
+
+
     return(
         <div className={"px-2 my-3"}>
-            <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
+            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
             <span className={"text-white text-xl"}>{label}</span>
         </div>
     )
