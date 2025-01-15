@@ -13,7 +13,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
 
     const addUser = async (id, username) => {
         try {
-            const userCollectionRef = collection(db, "Users");
+            const userCollectionRef = collection(db, "users");
             await setDoc(doc(userCollectionRef, id), {
                 username: username,
                 creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()).toString()}-${(new Date().getFullYear()).toString()}`,

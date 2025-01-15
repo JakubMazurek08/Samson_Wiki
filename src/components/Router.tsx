@@ -5,6 +5,7 @@ import {NewExercisePage} from "../pages/NewExercisePage.tsx";
 import {ExercisesByMuscle} from "../pages/ExercisesByMuscle.tsx";
 import {ErrorPage} from "../pages/errorPage.tsx";
 import {TrainingPlansPage} from "../pages/TrainingPlansPage.tsx";
+import {TrainingPlanEditPage} from "../pages/TrainingPlanEditPage.tsx";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path:"/plans",
                 element: <TrainingPlansPage/>
+            },
+            {
+                path:`/plans/:planId`,
+                element: <TrainingPlanEditPage/>
             }
         ]
     },
