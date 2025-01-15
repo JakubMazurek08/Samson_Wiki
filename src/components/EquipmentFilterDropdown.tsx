@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {useFilter} from "../contexts/useFilter.ts";
+import { Checkbox} from "./Checkbox.tsx";
 
 export const EquipmentFilterDropdown = () => {
     const [toggle, setToggle ] = useState(false);
@@ -29,25 +30,16 @@ export const EquipmentFilterDropdown = () => {
             {
             toggle?
                 <form className={"w-56 rounded-b-2xl bg-primary-light"}>
-                    <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
-                    <CheckBox label={"Dumbbell"} name={"dumbell"} register={register}/>
-                    <CheckBox label={"Machine"} name={"machine"} register={register}/>
-                    <CheckBox label={"Cables"} name={"cables"} register={register}/>
-                    <CheckBox label={"smith machine"} name={"Smitch machine"} register={register}/>
-                    <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
+                    <Checkbox label={"Barbell"} name={"barbell"} register={register}/>
+                    <Checkbox label={"Dumbbell"} name={"dumbell"} register={register}/>
+                    <Checkbox label={"Machine"} name={"machine"} register={register}/>
+                    <Checkbox label={"Cables"} name={"cables"} register={register}/>
+                    <Checkbox label={"Smith machine"} name={"Smitch machine"} register={register}/>
+                    <Checkbox label={"Bodyweight"} name={"bodyweight"} register={register}/>
                 </form>
             :
             null
             }
-        </div>
-    )
-}
-
-const CheckBox = ({label, name,register})  => {
-    return(
-        <div className={"px-2 my-3"}>
-            <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
-            <span className={"text-white text-xl"}>{label}</span>
         </div>
     )
 }
