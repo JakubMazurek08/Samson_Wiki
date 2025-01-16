@@ -41,7 +41,7 @@ export const OneRepPage = () => {
           {errors.weight && <p>{errors.weight.message}</p>}
           <input
             {...register("reps", {
-              required: "ile zrobisz powtorzen spelu",
+              required: "ile zrobisz powtorzen",
               validate: (reps) =>
                 reps <= 15 || "wez sobie wiekszy ciezar a nie cardio nakurwiasz",
             })}
