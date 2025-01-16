@@ -1,9 +1,29 @@
 import {useForm} from "react-hook-form"
-import {db} from "../lib/firebase.ts"
+import {auth, db} from "../lib/firebase.ts"
 import {addDoc, collection} from "firebase/firestore"
+import {useEffect, useState} from "react";
+import {onAuthStateChanged} from "firebase/auth";
 
 export const NewExercisePage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm()
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                if(uid=="GAnZ99ClYyXf3dWFXjNH9uyLSG12"){
+                    setIsAdmin(true);
+                }else {
+                    setIsAdmin(false);
+                }
+            } else {
+                setIsAdmin(false);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const submit = async (data) => {
 
@@ -18,6 +38,7 @@ export const NewExercisePage = () => {
 
     return (
         <main className="flex w-[calc(100vw-320px)] h-[calc(100vh-80px)]  flex-col items-center ">
+            {isAdmin?
             <form className={" m-16 w-[50vw]"} onSubmit={handleSubmit(submit)}>
                 <h1 className={"text-primary-dark font-bold text-4xl"}>Add New Exercise:</h1>
 
@@ -44,6 +65,7 @@ export const NewExercisePage = () => {
                     type={"submit"}>ADD
                 </button>
             </form>
+                : <h1 className={"text-primary-medium text-6xl font-black"}>NO ACCESS, LOG IN AS ADMIN</h1>}
         </main>
     )
 }

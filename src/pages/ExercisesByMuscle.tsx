@@ -27,10 +27,15 @@ export const ExercisesByMuscle = () => {
             const q = query(collection(db,"exercises"),and(or(where("primary","==",muscle),where("secondary","==",muscle),where("ternary","==",muscle)),where("equipment","in",selectedFilters)))
             const querySnapshot = await getDocs(q);
             const newData = [];
+            let newnewData = [];
             querySnapshot.forEach((doc) => {
-                newData.push(doc.data())
+                newData.push(doc.data());
+                const primaryMuscleData = newData.filter((data)=>(data.primary == muscle));
+                const secondaryMuscleData = newData.filter((data)=>(data.secondary == muscle));
+                const ternaryMuscleData = newData.filter((data)=>(data.ternary == muscle));
+                newnewData = [...primaryMuscleData,...secondaryMuscleData,...ternaryMuscleData];
             });
-            setData(newData);
+            setData(newnewData);
         }
         getData();
     }, [muscle, selectedFilters]);
@@ -93,9 +98,12 @@ export const ExercisesByMuscle = () => {
 
 
 const CheckBox = ({label, name, register}) => {
+    const {selectedFilters} = useFilter();
+    const isChecked = selectedFilters.includes(name);
+
     return (
         <div className={"px-2 my-3 flex w-1/2"}>
-            <input className="text-white mr-4" defaultChecked="checked" type="checkbox" {...register(name)} />
+            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
             <span className={"text-white text-xl"}>{label}</span>
         </div>
     )
