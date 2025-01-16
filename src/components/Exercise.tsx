@@ -1,7 +1,7 @@
 import {useEffect, useState, useRef} from "react";
 import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "../lib/firebase.ts";
-import {SmallMuscleDisplay} from "../components/SmallMuscleDisplay.tsx";
+import {SmallMuscleDisplay} from "./SmallMuscleDisplay.tsx";
 import LottieView from 'lottie-react';
 import loadingVideoJson from "../assets/animations/loadingVideo.json"
 

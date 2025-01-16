@@ -2,7 +2,7 @@ import {db} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
 import {collection,query,where,and,or,getDocs} from "firebase/firestore"
 import {useParams} from "react-router-dom";
-import {Exercise} from "./Exercise.tsx";
+import {Exercise} from "../components/Exercise.tsx";
 import {v4} from "uuid";
 import {useFilter} from "../contexts/useFilter.ts";
 import {ManFront} from "../components/ManFront.tsx";
