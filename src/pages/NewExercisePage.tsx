@@ -1,9 +1,29 @@
 import {useForm} from "react-hook-form"
-import {db} from "../lib/firebase.ts"
+import {auth, db} from "../lib/firebase.ts"
 import {addDoc, collection} from "firebase/firestore"
+import {useEffect, useState} from "react";
+import {onAuthStateChanged} from "firebase/auth";
 
 export const NewExercisePage = () => {
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, formState: {errors}} = useForm()
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                if(uid=="GAnZ99ClYyXf3dWFXjNH9uyLSG12"){
+                    setIsAdmin(true);
+                }else {
+                    setIsAdmin(false);
+                }
+            } else {
+                setIsAdmin(false);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const submit = async (data) => {
 
@@ -18,47 +38,64 @@ export const NewExercisePage = () => {
 
     return (
         <main className="flex w-[calc(100vw-320px)] h-[calc(100vh-80px)]  flex-col items-center ">
+            {isAdmin?
             <form className={" m-16 w-[50vw]"} onSubmit={handleSubmit(submit)}>
                 <h1 className={"text-primary-dark font-bold text-4xl"}>Add New Exercise:</h1>
 
-                <div className={"flex flex-col flex-wrap h-1/2 items-center gap-8"} >
-                <TextInput name={"name"} label={"name"} register={register}/>
+                <div className={"flex flex-col flex-wrap h-1/2 items-center gap-8"}>
+                    <TextInput name={"name"} label={"name"} register={register} errors={errors}/>
 
-                <MuscleInput name={"primary"} label={"primary muscles"} register={register}/>
-                <MuscleInput name={"secondary"} label={"secondary muscles"} register={register}/>
-                <MuscleInput name={"ternary"} label={"ternary muscles"} register={register}/>
+                    <MuscleInput name={"primary"} label={"primary muscles"} register={register} errors={errors}/>
+                    <MuscleInput name={"secondary"} label={"secondary muscles"} register={register} errors={errors}/>
+                    <MuscleInput name={"ternary"} label={"ternary muscles"} register={register} errors={errors}/>
 
-                <EquipmentInput name={"equipment"} label={"equipment"} register={register}/>
+                    <EquipmentInput name={"equipment"} label={"equipment"} register={register} errors={errors}/>
 
-                <TextInput name={"grip"} label={"grip type"} register={register}/>
-                <TextInput name={"force"} label={"force type"} register={register}/>
-                <TextInput name={"difficulty"} label={"difficulty"} register={register}/>
+                    <TextInput name={"grip"} label={"grip type"} register={register} errors={errors}/>
+                    <TextInput name={"force"} label={"force type"} register={register} errors={errors}/>
+                    <TextInput name={"difficulty"} label={"difficulty"} register={register} errors={errors}/>
 
-                <TextInput name={"video1"} label={"video 1 name"} register={register}/>
-                <TextInput name={"video2"} label={"video 2 name"} register={register}/>
+                    <TextInput name={"step1"} label={"step 1"} register={register} errors={errors}/>
+                    <TextInput name={"step2"} label={"step 2"} register={register} errors={errors}/>
+                    <TextInput name={"step3"} label={"step 3"} register={register} errors={errors}/>
 
                 </div>
-                <button className="p-2 w-20 rounded-2xl bg-primary-medium text-white font-bold hover:scale-110 transition-all duration-300" type={"submit"}>ADD</button>
+                <button
+                    className="p-2 w-20 rounded-2xl bg-primary-medium text-white font-bold hover:scale-110 transition-all duration-300"
+                    type={"submit"}>ADD
+                </button>
             </form>
+                : <h1 className={"text-primary-medium text-6xl font-black"}>NO ACCESS, LOG IN AS ADMIN</h1>}
         </main>
     )
 }
 
-const TextInput = ({name, label, register}) => {
-    return(
-    <div className={"flex flex-col"}>
-        <label className={"text-primary-medium m-2 text-2xl"}>{label}</label>
-        <input className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"} type="text" {...register(name)}/>
-    </div>
+const TextInput = ({name, label, register, errors}) => {
+    return (
+        <div className={"flex flex-col"}>
+            <label className={"text-primary-medium m-2 text-2xl"}>{label}</label>
+            <input className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"}
+                   type="text" {...register(name, {
+                required: `${label} field is required`
+            })}/>
+            {errors[name] && errors[name].message && (
+                <h1 className="text-xl font-bold text-red-transparent">
+                    {errors[name].message}
+                </h1>
+            )}
+        </div>
     )
 }
 
-const MuscleInput = ({name,label,register}) => {
-    return(
+const MuscleInput = ({name, label, register, errors}) => {
+    return (
         <div className={"flex flex-col"}>
             <label className={"text-primary-medium m-2 text-2xl"}>{label}</label>
-            <select className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"} {...register(name)}>
-                <option value="none"> None </option>
+            <select
+                className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"} {...register(name, {
+                required: `${label} field is required`,
+            })}>
+                <option value="none"> None</option>
                 <option value="chest">Chest</option>
                 <option value="back">Back</option>
                 <option value="shoulders">Shoulders</option>
@@ -71,23 +108,40 @@ const MuscleInput = ({name,label,register}) => {
                 <option value="abs">Abs</option>
                 <option value="obliques">Obliques</option>
                 <option value="glutes">Glutes</option>
+                <option value="upper-back">Upper back</option>
+                <option value="lower-back">Lower back</option>
+                <option value="traps">Traps</option>
+                <option value="lats">Lats</option>
             </select>
+            {errors[name] && errors[name].message && (
+                <h1 className="text-xl font-bold text-red-transparent">
+                    {errors[name].message}
+                </h1>
+            )}
         </div>
     )
 }
 
-const EquipmentInput = ({name,label,register}) => {
-    return(
+const EquipmentInput = ({name, label, register, errors}) => {
+    return (
         <div className={"flex flex-col"}>
             <label className={"text-primary-medium m-2 text-2xl"}>{label}</label>
-            <select className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"} {...register(name)}>
-                <option value="bodyweight"> Bodyweight </option>
+            <select
+                className={"p-2 w-80 text-primary-medium bg-white border border-primary-medium rounded-md text-2xl"} {...register(name, {
+                required: `${label} field is required`,
+            })}>
+                <option value="bodyweight"> Bodyweight</option>
                 <option value="barbell">Barbell</option>
                 <option value="dumbbell">Dumbbell</option>
                 <option value="machine">Machine</option>
                 <option value="cables">Cables</option>
                 <option value="smith machine">Smitch Machine</option>
             </select>
+            {errors[name] && errors[name].message && (
+                <h1 className="text-xl font-bold text-red-transparent">
+                    {errors[name].message}
+                </h1>
+            )}
         </div>
     )
 }

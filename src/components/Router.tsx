@@ -3,6 +3,10 @@ import {Home} from "../pages/Home.tsx";
 import {NavBar} from "../pages/NavBar.tsx";
 import {NewExercisePage} from "../pages/NewExercisePage.tsx";
 import {ErrorPage} from "../pages/errorPage.tsx";
+import {ExercisesByMuscle} from "../pages/ExercisesByMuscle.tsx";
+import {ErrorPage} from "../pages/errorPage.tsx";
+import {TrainingPlansPage} from "../pages/TrainingPlansPage.tsx";
+import {TrainingPlanEditPage} from "../pages/TrainingPlanEditPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -13,16 +17,28 @@ const router = createBrowserRouter([
                 path:"/",
                 element: <Home/>
             },
+            {
+                path: "/admin",
+                element: <NewExercisePage/>
+            },
+            {
+                path:"/exercises/:muscle",
+                element: <ExercisesByMuscle/>
+            },
+            {
+                path:"/plans",
+                element: <TrainingPlansPage/>
+            },
+            {
+                path:`/plans/:planId`,
+                element: <TrainingPlanEditPage/>
+            }
         ]
-    },
-    {
-        path: "/admin",
-        element: <NewExercisePage/>
     },
     {
         path:"*",
         element: <ErrorPage />
-    },
+    }
 ])
 
 export const Router = () => {
