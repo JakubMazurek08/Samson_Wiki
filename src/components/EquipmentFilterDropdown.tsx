@@ -49,7 +49,7 @@ export const EquipmentFilterDropdown = ({isDropped}) => {
                     <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
                     <CheckBox label={"Machine"} name={"machine"} register={register}/>
                     <CheckBox label={"Cables"} name={"cables"} register={register}/>
-                    <CheckBox label={"smith machine"} name={"smith machine"} register={register}/>
+                    <CheckBox label={"Smith machine"} name={"smith machine"} register={register}/>
                     <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
                 </form>
 
@@ -70,7 +70,8 @@ const CheckBox = ({label, name,register})  => {
 
     return(
         <div className={"px-2 my-3"}>
-            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
+            <input className="w-4 h-4 ml-3 mr-2 bg-white rounded-md transition-all duration-300 ease-in-out cursor-pointer
+            text-white mr-4 checked:scale-110" defaultChecked={isChecked} type="checkbox" {...register(name)} />
             <span className={"text-white text-xl"}>{label}</span>
         </div>
     )
