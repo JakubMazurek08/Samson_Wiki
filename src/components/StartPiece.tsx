@@ -1,6 +1,6 @@
 export const StartPiece = () => {
     return (
-        <div className={"relative"}>
+        <div className={"relative -mt-1 "}>
             <svg className={"fill-secondary-light"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 125"
                  height={125}>
                 <rect className="cls-1" x="326.35" y="0" width="91.59" height="18.59" rx="8.28" ry="8.28"/>

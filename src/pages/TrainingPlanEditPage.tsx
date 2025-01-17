@@ -9,8 +9,9 @@ import {ExercisePieceDropDown} from "../components/ExercisePieceDropDown.tsx";
 import {EquipmentFilterDropdown} from "../components/EquipmentFilterDropdown.tsx";
 import {ManFront} from "../components/ManFront.tsx";
 import {ManBack} from "../components/ManBack.tsx";
-import {DndProvider} from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndContext, DragEndEvent} from "@dnd-kit/core";
+
+const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday"];
 
 export const TrainingPlanEditPage = () => {
     const {planId} = useParams();
@@ -19,6 +20,20 @@ export const TrainingPlanEditPage = () => {
     const [trainingPlan, setTrainingPlan] = useState(null);
     const [selectedDay, setSelectedDay] = useState(0);
     const [selectedMuscle, setSelectedMuscle] = useState("chest");
+    const [isDragging, setIsDragging] = useState(false);
+
+    function handleDragEnd(event:DragEndEvent){
+        const {active, over} = event;
+
+        if(!over) return;
+
+        console.log(active,over)
+
+        const draggedExerciseId = active.id as string;
+        const droppedOnId = over.id as string;
+
+        console.log(draggedExerciseId, droppedOnId);
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -39,13 +54,12 @@ export const TrainingPlanEditPage = () => {
         querySnapshot.forEach((doc) => {
             if(doc.id===planId){
                 setTrainingPlan(doc.data());
-                console.log(doc.data());
             }
         });
     }
 
     return(
-        <DndProvider backend={HTML5Backend}>
+        <DndContext onDragEnd={handleDragEnd}>
         {
             userUID?
                 trainingPlan?
@@ -53,7 +67,7 @@ export const TrainingPlanEditPage = () => {
                 <div className={"w-8/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
                     <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan "{trainingPlan.name}" :</h1>
                     <WeekDaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay}/>
-                    <TrainingPlanBlockDisplay/>
+                    <TrainingPlanBlockDisplay exercises={trainingPlan.days[days[selectedDay]]}/>
                 </div>
                 <div className={"w-4/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
                     <ExercisePieceDropDown muscle={selectedMuscle}/>
@@ -71,6 +85,6 @@ export const TrainingPlanEditPage = () => {
                 :
                 <h1>u need to be logged in</h1>
         }
-        </DndProvider>
+        </DndContext>
     )
 }

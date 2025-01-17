@@ -1,6 +1,6 @@
 import {ExercisePiece} from "./ExercisePiece.tsx";
 import {useEffect, useState} from "react";
-import {and, collection, getDocs, or, query, where} from "firebase/firestore";
+import {and, collection, getDocs, query, where} from "firebase/firestore";
 import {db} from "../lib/firebase.ts";
 import {useFilter} from "../contexts/useFilter.ts";
 
@@ -26,13 +26,11 @@ export const ExercisePieceDropDown = ({muscle}) => {
         }
         getData();
     }, [muscle, selectedFilters]);
-
-
     return(
         <div className={" overflow-y-auto overflow-x-hidden flex mb-2 border-b-4 flex-1 border-secondary-medium flex-col gap-2"}>
             {data?
                 data.map((exercise)=>{
-                    return <ExercisePiece name={exercise.name}/>
+                    return <ExercisePiece name={exercise.name} id={exercise.name} isInStack={false}/>
                 })
             : <h1>loading...</h1>}
         </div>
