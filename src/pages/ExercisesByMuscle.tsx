@@ -2,13 +2,12 @@ import {db} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
 import {collection,query,where,and,or,getDocs} from "firebase/firestore"
 import {useParams} from "react-router-dom";
-import {Exercise} from "./Exercise.tsx";
+import {Exercise} from "../components/Exercise.tsx";
 import {v4} from "uuid";
 import {useFilter} from "../contexts/useFilter.ts";
 import {ManFront} from "../components/ManFront.tsx";
 import {ManBack} from "../components/ManBack.tsx";
 import {useForm} from "react-hook-form";
-import {Checkbox} from "../components/Checkbox.tsx";
 
 
 function capitalizeWords(inputString) {
@@ -28,10 +27,15 @@ export const ExercisesByMuscle = () => {
             const q = query(collection(db,"exercises"),and(or(where("primary","==",muscle),where("secondary","==",muscle),where("ternary","==",muscle)),where("equipment","in",selectedFilters)))
             const querySnapshot = await getDocs(q);
             const newData = [];
+            let newnewData = [];
             querySnapshot.forEach((doc) => {
-                newData.push(doc.data())
+                newData.push(doc.data());
+                const primaryMuscleData = newData.filter((data)=>(data.primary == muscle));
+                const secondaryMuscleData = newData.filter((data)=>(data.secondary == muscle));
+                const ternaryMuscleData = newData.filter((data)=>(data.ternary == muscle));
+                newnewData = [...primaryMuscleData,...secondaryMuscleData,...ternaryMuscleData];
             });
-            setData(newData);
+            setData(newnewData);
         }
         getData();
     }, [muscle, selectedFilters]);
@@ -61,14 +65,18 @@ export const ExercisesByMuscle = () => {
                     <ManFront primary={muscle} height={290}/>
                     <ManBack primary={muscle} height={290}/>
                 </div>
-                <form className="bg-primary-light">
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                        <Checkbox label={"Barbell"} name={"barbell"} register={register} />
-                        <Checkbox label={"Machine"} name={"machine"} register={register} />
-                        <Checkbox label={"Smith machine"} name={"smith machine"} register={register} />
-                        <Checkbox label={"Dumbbell"} name={"dumbbell"} register={register} />
-                        <Checkbox label={"Cables"} name={"cables"} register={register} />
-                        <Checkbox label={"Bodyweight"} name={"bodyweight"} register={register} />
+                <form className={"bg-primary-light"}>
+                    <div className={"flex justify-between relative"}>
+                        <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
+                        <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
+                    </div>
+                    <div className={"flex justify-between relative"}>
+                        <CheckBox label={"Machine"} name={"machine"} register={register}/>
+                        <CheckBox label={"Cables"} name={"cables"} register={register}/>
+                    </div>
+                    <div className={"flex justify-between relative"}>
+                        <CheckBox label={"Smith machine"} name={"smith machine"} register={register}/>
+                        <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
                     </div>
                 </form>
             </div>
@@ -86,4 +94,17 @@ export const ExercisesByMuscle = () => {
     </main>
         </main>
 )
+}
+
+
+const CheckBox = ({label, name, register}) => {
+    const {selectedFilters} = useFilter();
+    const isChecked = selectedFilters.includes(name);
+
+    return (
+        <div className={"px-2 my-3 flex w-1/2"}>
+            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
+            <span className={"text-white text-xl"}>{label}</span>
+        </div>
+    )
 }

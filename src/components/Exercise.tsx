@@ -1,7 +1,7 @@
 import {useEffect, useState, useRef} from "react";
 import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "../lib/firebase.ts";
-import {SmallMuscleDisplay} from "../components/SmallMuscleDisplay.tsx";
+import {SmallMuscleDisplay} from "./SmallMuscleDisplay.tsx";
 import LottieView from 'lottie-react';
 import loadingVideoJson from "../assets/animations/loadingVideo.json"
 
@@ -10,7 +10,30 @@ export const Exercise = ({exerciseData}) => {
     const [url1,setUrl1] = useState("");
     const [url2,setUrl2] = useState("");
     const [toggle, setToggle] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const videoWrapperRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsInView(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (videoWrapperRef.current) {
+            observer.observe(videoWrapperRef.current);
+        }
+
+        return () => {
+            if (videoWrapperRef.current) {
+                observer.unobserve(videoWrapperRef.current);
+            }
+        };
+    }, []);
+
     useEffect(()=>{
+        if (!isInView) return;
         const storageRef1 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.name}-1.mp4` );
         const storageRef2 = ref(storage, `gs://samsonwiki-f8f0a.firebasestorage.app/${exerciseData.name}-2.mp4` );
 
@@ -20,12 +43,10 @@ export const Exercise = ({exerciseData}) => {
         getDownloadURL(storageRef2).then((url)=>{
             setUrl2(url);
         })
-    },[exerciseData])
-
-
+    },[exerciseData, isInView])
 
     return (
-        <div className={`relative min-h-[550px] lg:min-w-[700px]  2xl:w-[1000px]`}>
+        <div ref={videoWrapperRef} className={`relative min-h-[550px] lg:min-w-[700px]  2xl:w-[1000px] 2xl:mr-[500px]`}>
             <div className={`bg-white rounded-l-3xl ${!toggle?"rounded-r-3xl":null} transition-all duration-300 h-full`}>
                 <div className={`bg-primary-light rounded-tl-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} min-h-16 flex pl-8 py-2 items-center`}> <h1 className={"text-secondary-light font-bold text-4xl"}>{exerciseData.name}</h1></div>
                 <div className={"flex justify-around lg:justify-between items-center mb-8"}>
