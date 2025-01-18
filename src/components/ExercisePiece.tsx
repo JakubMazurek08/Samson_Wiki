@@ -2,37 +2,25 @@ import {useDraggable} from "@dnd-kit/core";
 import {Hitbox} from "./Hitbox.tsx";
 import {useEffect, useState} from "react";
 
-export const ExercisePiece = ({name, isInStack,id}) => {
+export const ExercisePiece = ({name, isInStack,id,index}) => {
 
-
-    const {attributes, listeners, setNodeRef, transform} = useDraggable({
+    const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({
         id:id,
-        listeners: {
-            onDragMove: (event) => {
-                console.log("abc")
-                // Update the position based on the mouse position
-                // const { delta } = event;
-                // setPosition((prev) => ({
-                //     x: prev.x + delta.x,
-                //     y: prev.y + delta.y,
-                // }));
-            },
-        },
     })
 
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-
+    const transformYOffset = index*130
 
     const style = transform ? {
         position: "absolute",
-        left: `${position.x}px`,
-        top: `${position.y}px`,
+        transform: `translate3d(${transform.x}px, ${transform.y+transformYOffset+40}px, 0)`,
+        zIndex:500,
     } : undefined;
+
     return (
         <>
-            <div ref={setNodeRef}
-                 {...listeners}
-                 {...attributes}
+            <div   ref={id.includes("*") ? null : setNodeRef}
+                   {...(id.includes("*") ? {} : listeners)}
+                   {...(id.includes("*") ? {} : attributes)}
                  style={style}
                  className={"relative -mt-1"}>
                 <svg className={"fill-primary-light"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 125"

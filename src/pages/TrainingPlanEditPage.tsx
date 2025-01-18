@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {onAuthStateChanged} from "firebase/auth";
 import {WeekDaySelector} from "../components/WeekDaySelector.tsx";
 import {TrainingPlanBlockDisplay} from "../components/TrainingPlanBlockDisplay.tsx";
-import {ExercisePieceDropDown} from "../components/ExercisePieceDropDown.tsx";
+import {ExercisePieceList} from "../components/ExercisePieceList.tsx";
 import {EquipmentFilterDropdown} from "../components/EquipmentFilterDropdown.tsx";
 import {ManFront} from "../components/ManFront.tsx";
 import {ManBack} from "../components/ManBack.tsx";
@@ -70,7 +70,7 @@ export const TrainingPlanEditPage = () => {
                     <TrainingPlanBlockDisplay exercises={trainingPlan.days[days[selectedDay]]}/>
                 </div>
                 <div className={"w-4/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
-                    <ExercisePieceDropDown muscle={selectedMuscle}/>
+                    <ExercisePieceList muscle={selectedMuscle}/>
                     <div className={"bg-primary-light p-2 flex rounded-[32px]"}>
                         <div className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2 justify-around"}>
                             <ManFront primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle} dontChangeURL={true} height={290}/>
