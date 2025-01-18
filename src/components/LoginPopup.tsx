@@ -16,7 +16,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
             const userCollectionRef = collection(db, "users");
             await setDoc(doc(userCollectionRef, id), {
                 username: username,
-                creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()).toString()}-${(new Date().getFullYear()).toString()}`,
+                creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()+1).toString()}-${(new Date().getFullYear()).toString()}`,
             });
         } catch (error) {
             console.error("Error adding document: ", error);

@@ -1,9 +1,11 @@
 import {MapInteractionCSS} from "react-map-interaction"
 import {ExercisePiece} from "./ExercisePiece.tsx";
 import {StartPiece} from "./StartPiece.tsx";
+import {useEffect} from "react";
 
 
 export const TrainingPlanBlockDisplay = ({exercises}) => {
+
     return (
         <div className="border-2 border-secondary-medium mt-4 rounded-3xl ">
             <MapInteractionCSS
@@ -21,7 +23,7 @@ export const TrainingPlanBlockDisplay = ({exercises}) => {
                 }}
             >
                 <div className={"h-[600px] flex flex-col-reverse"}>
-                    <StartPiece/>
+                    <StartPiece isInStack={true} id={"start*0"}/>
                     {
                         exercises.map((exercise,index) => {
                             return <ExercisePiece name={exercise} isInStack={true} key={index+1} id={exercise+"*"+(index+1)}/>
