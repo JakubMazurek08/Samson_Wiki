@@ -16,5 +16,5 @@ export const WeekDaySelector = ({setSelectedDay,selectedDay}) => {
 }
 
 const Day = ({letter,number,selectedDay, setSelectedDay}) => {
-    return <button onClick={()=>{setSelectedDay(number)}} className={`text-6xl font-bold ${selectedDay==number?"text-secondary-light":"text-white"} transition-all duration-200 hover:text-secondary-light active:scale-110`}>{letter}</button>
+    return <button onClick={()=>{setSelectedDay(number)}} className={`text-6xl font-bold ${selectedDay==number?"text-secondary-light":"text-white"} bg-primary-medium transition-all duration-200 hover:text-secondary-light active:bg-primary-medium active:scale-110`}>{letter}</button>
 }

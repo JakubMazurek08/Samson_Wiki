@@ -144,12 +144,13 @@ export const TrainingPlanEditPage = () => {
                         </main>
                     )
                     : null}
-                <div className={"w-8/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
+                <div className={"w-7/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
                     <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan "{trainingPlan.name}"
                         :</h1>
                     <div className={"flex justify-between"}>
                         <WeekDaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay}/>
                         <div>
+                            <div className={"flex flex-col"}>
                         <button
                             onClick={() => {
                                 updateExercisesInDatabase()
@@ -163,11 +164,12 @@ export const TrainingPlanEditPage = () => {
                             }}
                             className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit
                         </button>
+                            </div>
                         </div>
                     </div>
                     <TrainingPlanBlockDisplay setTrainingPlan={setTrainingPlan} setSaved={setSaved} currentDay={selectedDay} exercises={trainingPlan.days[days[selectedDay]]}/>
                 </div>
-                <div className={"w-4/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
+                <div className={"w-5/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
                     <ExercisePieceList muscle={selectedMuscle}/>
                     <div className={"bg-primary-light p-2 flex rounded-[32px]"}>
                         <div className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2 justify-around"}>

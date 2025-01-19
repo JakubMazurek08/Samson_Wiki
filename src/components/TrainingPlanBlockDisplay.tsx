@@ -11,12 +11,12 @@ export const TrainingPlanBlockDisplay = ({exercises, setTrainingPlan, currentDay
             <MapInteractionCSS
                 defaultValue={{
                     scale: 1,
-                    translation: {x: 350, y: 0}
+                    translation: {x: 150, y: -50}
                 }}
                 minScale={1}
                 maxScale={1}
                 translationBounds={{
-                    xMax: 675,
+                    xMax: 330,
                     yMax: 1000,
                     xMin: 0,
                     yMin: -1000,
