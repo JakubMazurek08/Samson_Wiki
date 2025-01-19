@@ -32,14 +32,14 @@ export const NavBar = () => {
         <>
             <aside
                 className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 mt-20 -translate-x-80 lg:translate-x-0">
-                <NavButton label="Training Plans" icon="/src/assets/icons/planning.png" isSmall={false}
+                <NavButton label="Training Plans" icon="/icons/planning.png" isSmall={false}
                            linkTo={"/plans"}/>
-                <NavButton label="ExercisesByMuscle" icon="/src/assets/icons/dumbbell.png" isSmall={false}/>
+                <NavButton label="ExercisesByMuscle" icon="/icons/dumbbell.png" isSmall={false}/>
                 <div className="flex flex-col p-2 pl-4 py-4 ">
                     <div className="flex items-center gap-4">
-                        <img className="w-12 h-12 " src={"/src/assets/icons/wrench.png"} alt="icon"/>
+                        <img className="w-12 h-12 " src={"/icons/wrench.png"} alt="icon"/>
                         <h1 className="text-white font-bold text-2xl">Tools</h1>
-                        <img className="w-8 h-8 ml-12" src={"/src/assets/icons/down-arrow.png"} alt="arrow"/>
+                        <img className="w-8 h-8 ml-12" src={"/icons/down-arrow.png"} alt="arrow"/>
                     </div>
                     <NavButton label="Calorie Calculator" isSmall={true} linkTo={"/CalorieCalculator"}/>
                     <NavButton label="1 Rep Max Calculator" isSmall={true} linkTo={"/OneRep"}/>
@@ -56,7 +56,7 @@ export const NavBar = () => {
                                 setToggleLoginOptions((prevState) => !prevState)
                             }}
                             className="h-16 w-16 mr-10 bg-secondary-light rounded-full cursor-pointer"
-                            src={'/src/assets/icons/user(1).png'}
+                            src={'/icons/user(1).png'}
                             alt="User Icon"
                         />
                         {toggleLoginOptions && (
