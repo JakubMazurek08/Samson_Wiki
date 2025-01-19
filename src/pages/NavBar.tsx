@@ -47,7 +47,10 @@ export const NavBar = () => {
                         <NavButton label="Calorie Calculator" isSmall={true}/>
                         <NavButton label="1 Rep Max Calculator" isSmall={true} linkTo={"/OneRep"}/>
                     </div>
-                </aside>
+                    <NavButton label="Calorie Calculator" isSmall={true} linkTo={"/CalorieCalculator"}/>
+                    <NavButton label="1 Rep Max Calculator" isSmall={true}/>
+                </div>
+            </aside>
             : null}
             <header className="h-20  w-screen  bg-primary-dark fixed z-40
               flex items-center justify-between">

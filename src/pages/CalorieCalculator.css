@@ -1,0 +1,146 @@
+ #Calculator{
+    color: white;
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #001D3D;
+    border-radius: 20px;
+    border-color: #FFC300;
+    border-width: 2px;
+    margin-left: 650px;
+    margin-right: 650px;
+}
+
+
+
+select, input{
+    background-color: #003566;
+}
+
+button{
+    background-color: #003566;
+    padding: 5px;
+    border-radius: 15%;
+}
+
+button:active { 
+    background-color: #FFC300;
+}
+
+#title{
+    display: flex;
+    justify-content: center;
+    font-size:30px;
+    font-weight: bold;
+}
+
+#form{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+#result{    
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 50px;
+    padding: 15px;
+    background-color: #001D3D;
+    border-radius: 10px;
+    border-color: #FFC300;
+    border-width: 2px;
+    margin-left: 700px;
+    margin-right: 700px;
+}
+
+@media only screen and (max-width: 1500px) {
+    #Calculator{
+        margin-left: 500px;
+        margin-right: 500px;
+    }
+    #result{
+        margin-left: 600px;
+        margin-right: 600px;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    #Calculator{
+        margin-left: 400px;
+        margin-right: 400px;
+    }
+    #result{
+        margin-left: 500px;
+        margin-right: 500px;
+    }
+}
+@media only screen and (max-width: 1250px) {
+    #Calculator{
+        margin-left: 350px;
+        margin-right: 350px;
+    }
+    #result{
+        margin-left: 400px;
+        margin-right: 400px;
+    }
+}
+@media only screen and (max-width: 1040px) {
+    #Calculator{
+        margin-left: 350px;
+        margin-right: 350px;
+    }
+    #result{
+        margin-left: 350px;
+        margin-right: 350px;
+    }
+}
+@media only screen and (max-width: 1020px) {
+    #Calculator{
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+    #result{
+        margin-left: 300px;
+        margin-right: 300px;
+    }
+}
+@media only screen and (max-width: 900px) {
+    #Calculator{
+        margin-left: 170px;
+        margin-right: 170px;
+    }
+    #result{
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    #Calculator{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    #result{
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #Calculator{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    #result{
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #Calculator{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    #result{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

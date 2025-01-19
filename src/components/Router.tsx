@@ -5,6 +5,7 @@ import {OneRepPage} from "../pages/OneRepPage.tsx"
 import {NewExercisePage} from "../pages/NewExercisePage.tsx";
 import {ExercisesByMuscle} from "../pages/ExercisesByMuscle.tsx";
 import {ErrorPage} from "../pages/errorPage.tsx";
+import { CalorieCalculator } from "../pages/CalorieCalculator.tsx";
 import {TrainingPlansPage} from "../pages/TrainingPlansPage.tsx";
 import {TrainingPlanEditPage} from "../pages/TrainingPlanEditPage.tsx";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path:"/exercises/:muscle",
                 element: <ExercisesByMuscle/>
+            },
+            {
+                path: "/CalorieCalculator",
+                element: <CalorieCalculator/>
             },
             {
                 path:"/plans",
