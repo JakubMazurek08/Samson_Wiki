@@ -83,7 +83,7 @@ export const TrainingPlansPage = () => {
                         <h1 className={"text-primary-medium text-6xl font-black"}>Training Plans:</h1>
                         <img onClick={() => {
                             setIsAddingNewTrainingPlan(true)
-                        }} className={"h-[80px]"} src="/src/assets/icons/more.png" alt=""/>
+                        }} className={"h-[80px]"} src="/icons/more.png" alt=""/>
             </div>
             <div className={"w-full mt-10 border-primary-medium border-x-4 border-t-4 rounded-3xl flex-1 p-10 flex flex-wrap flex-row  gap-20 "}>
                 {trainingPlans[0]?

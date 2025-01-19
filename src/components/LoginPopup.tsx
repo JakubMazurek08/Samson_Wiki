@@ -59,7 +59,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
         <>
             <div onClick={()=>{setIsLoggingIn(false)}} className={"w-full h-full fixed"}></div>
             <div className={"bg-white h-3/4 w-[425px] lg:w-[475px] rounded-3xl flex flex-col items-center p-4 z-50"}>
-                <img className="h-60" src="/src/assets/logo/SamsonWikiLogoLight.png" alt=""/>
+                <img className="h-60" src="/logo/SamsonWikiLogoLight.png" alt=""/>
                 <h1 className={"text-6xl text-primary-light font-bold -mt-10"}>{isRegistering?"Sign in":"Log in"}</h1>
                 <button onClick={()=>{setIsRegistering((prevState) => !prevState)}} className={"mt-3"}>Or <span className={"text-primary-light"}>{isRegistering?"Log in":"Create Account"}</span></button>
                 <form className={"w-10/12 mt-10 flex flex-col items-center"} onSubmit={handleSubmit(onsubmit)}>

@@ -47,7 +47,7 @@ export const NavBar = () => {
             </aside>
             <header className="h-20  w-screen  bg-primary-dark fixed z-40
               flex items-center justify-between">
-                <Link to="/"><img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png"
+                <Link to="/"><img className="h-20 ml-10" src="/logo/SamsonWikiLogoDarkFull.png"
                                   alt="SamsonWiki"/></Link>
                 {signedIn ?
                     <div className="relative">

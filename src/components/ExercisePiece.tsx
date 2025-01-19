@@ -112,14 +112,14 @@ export const ExercisePiece = ({exercise, isInStack,id,index, setTrainingPlan,cur
                     <>
                     <div className={"absolute top-5 left-[350px] flex flex-col"}>
                         <img onClick={moveUp} className={"w-10 -rotate-90 cursor-pointer"}
-                             src="/src/assets/icons/right-arrow.png" alt=""/>
+                             src="/icons/right-arrow.png" alt=""/>
 
                         <img onClick={moveDown} className={"w-10 rotate-90 cursor-pointer"}
-                             src="/src/assets/icons/right-arrow.png" alt=""/>
+                             src="/icons/right-arrow.png" alt=""/>
                     </div>
                     <div className={"absolute bottom-4 left-[395px]"}>
                         <img onClick={deleteExercise} className={"w-4  cursor-pointer"}
-                             src="/src/assets/icons/delete.png" alt=""/>
+                             src="/icons/delete.png" alt=""/>
                     </div>
                     </>
                     :
@@ -179,9 +179,9 @@ const NumberPicker = ({exercise, state, setTrainingPlan, min, max, currentDay, i
     }
     return(
         <div className="flex flex-col items-center">
-            <img onClick={increment} className={"w-6 -rotate-90 cursor-pointer"} src="/src/assets/icons/right-arrow.png" alt=""/>
+            <img onClick={increment} className={"w-6 -rotate-90 cursor-pointer"} src="/icons/right-arrow.png" alt=""/>
             <h1 className={"text-3xl font-bold text-white -my-2"}>{exercise[state]}</h1>
-            <img onClick={decrement} className={"w-6 rotate-90 cursor-pointer"} src="/src/assets/icons/right-arrow.png" alt=""/>
+            <img onClick={decrement} className={"w-6 rotate-90 cursor-pointer"} src="/icons/right-arrow.png" alt=""/>
         </div>
     )
 
