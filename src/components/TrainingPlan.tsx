@@ -63,14 +63,20 @@ export const TrainingPlan = ({name, id, userUID, getData}) => {
                         setIsVerifyDelete(true)
                     }} src="/icons/delete.png" alt=""/>
                 </div>
-
+                <div className={"flex justify-around  mt-10"}>
+                <button
+                    onClick={() => {
+                        navigate(`/workout/${id}`);
+                    }}
+                    className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Workout
+                </button>
                 <button
                     onClick={() => {
                         navigate(`/plans/${id}`);
                     }}
-                    className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Edit
+                    className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12  hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Edit
                 </button>
-
+                </div>
             </div>
         </>
     )

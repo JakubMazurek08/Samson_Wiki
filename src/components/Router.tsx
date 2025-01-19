@@ -8,6 +8,7 @@ import {ErrorPage} from "../pages/errorPage.tsx";
 import { CalorieCalculator } from "../pages/CalorieCalculator.tsx";
 import {TrainingPlansPage} from "../pages/TrainingPlansPage.tsx";
 import {TrainingPlanEditPage} from "../pages/TrainingPlanEditPage.tsx";
+import {WorkoutPage} from "../pages/WorkoutPage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path:`/plans/:planId`,
                 element: <TrainingPlanEditPage/>
+            },
+            {
+                path:`/workout/:planId`,
+                element: <WorkoutPage/>
             }
         ]
     },

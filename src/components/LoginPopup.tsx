@@ -1,8 +1,9 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
-import {setDoc,doc, collection} from "firebase/firestore";
+import {setDoc,addDoc, doc, collection} from "firebase/firestore";
 import {auth, db} from "../lib/firebase.ts";
+import {defaultPlan1} from "../constant/defaultWorkoutPlans.ts";
 
 export const LoginPopup = ({setIsLoggingIn}) => {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -18,6 +19,8 @@ export const LoginPopup = ({setIsLoggingIn}) => {
                 username: username,
                 creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()+1).toString()}-${(new Date().getFullYear()).toString()}`,
             });
+            const trainingPlansRef = collection(db, `users/${id}/trainingPlans`);
+            await addDoc(trainingPlansRef, defaultPlan1);
         } catch (error) {
             console.error("Error adding document: ", error);
         }

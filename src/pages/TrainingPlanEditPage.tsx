@@ -28,10 +28,7 @@ export const TrainingPlanEditPage = () => {
 
     const updateExercisesInDatabase = async () => {
         try {
-            // Reference to the Firestore document (e.g., "plans/plan_kot")
             const docRef = doc(db, `users/${userUID}/trainingPlans/${planId}`);
-
-            // Save the object to Firestore
             await setDoc(docRef, trainingPlan);
         } catch (error) {
             console.error("Error adding plan to Firestore:", error);
@@ -119,7 +116,7 @@ export const TrainingPlanEditPage = () => {
                         <main className="w-full hidden 2xl:flex">
                             {areYouSurePopup ? (
                                     <main
-                                        className={`fixed w-screen h-screen top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
+                                        className={`fixed w-screen h-[calc(100vh-5rem)] top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
                                         <div className={"flex flex-col gap-4 rounded-xl w-[1000px] p-10 bg-true-white"}>
                                             <h1 className={"text-primary-medium font-bold text-4xl text-center"}>You have
                                                 unsaved changes, are
