@@ -18,8 +18,10 @@ const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path:"/OneRep",
+                path: "/OneRep",
                 element: <OneRepPage/>
+            },
+            {
                 path: "/admin",
                 element: <NewExercisePage/>
             },
