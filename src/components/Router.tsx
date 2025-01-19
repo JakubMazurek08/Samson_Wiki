@@ -22,15 +22,16 @@ const router = createBrowserRouter([
             {
                 path:"/exercises/:muscle",
                 element: <ExercisesByMuscle/>
+            },
+            {
+                path: "/CalorieCalculator",
+                element: <CalorieCalculator/>
             }
         ]
     },
     {
         path:"*",
         element: <ErrorPage />
-    },{
-        path: "/CalorieCalculator",
-        element: <CalorieCalculator/>
     }
 ])
 

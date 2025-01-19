@@ -57,10 +57,9 @@ export const CalorieCalculator = () => {
 
     return (
         <div>
-            <NavBar/>
             <div id="Calculator">
                 <h1 id="title">Calorie Calculator</h1>
-                <form onSubmit={handleSubmit(onSubmit)} >
+                <form id="mainForm" onSubmit={handleSubmit(onSubmit)} >
                     <br />
                     <div id="form">
                         <select {...register("sex")}>

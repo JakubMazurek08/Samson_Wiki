@@ -18,7 +18,7 @@ export const NavBar = () => {
                         <h1 className="text-white font-bold text-2xl">Tools</h1>
                         <img className="w-8 h-8 ml-12" src={"/src/assets/icons/down-arrow.png"} alt="arrow"/>
                     </div>
-                    <NavButton label="Calorie Calculator" isSmall={true}/>
+                    <NavButton label="Calorie Calculator" isSmall={true} linkTo={"/CalorieCalculator"}/>
                     <NavButton label="1 Rep Max Calculator" isSmall={true}/>
                 </div>
             </aside>

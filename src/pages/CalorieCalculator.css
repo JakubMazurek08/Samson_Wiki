@@ -1,14 +1,16 @@
  #Calculator{
     color: white;
     margin-top: 50px;
-    padding: 15px;
+    padding: 30px;
     background-color: #001D3D;
-    border-radius: 15%;
+    border-radius: 20px;
     border-color: #FFC300;
-    border-width: 5px;
+    border-width: 2px;
     margin-left: 650px;
     margin-right: 650px;
 }
+
+
 
 select, input{
     background-color: #003566;
@@ -27,6 +29,8 @@ button:active {
 #title{
     display: flex;
     justify-content: center;
+    font-size:30px;
+    font-weight: bold;
 }
 
 #form{
@@ -43,9 +47,9 @@ button:active {
     margin-top: 50px;
     padding: 15px;
     background-color: #001D3D;
-    border-radius: 45%;
+    border-radius: 10px;
     border-color: #FFC300;
-    border-width: 4px;
+    border-width: 2px;
     margin-left: 700px;
     margin-right: 700px;
 }
