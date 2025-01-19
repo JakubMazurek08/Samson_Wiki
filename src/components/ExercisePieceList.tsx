@@ -72,7 +72,7 @@ export const ExercisePieceList = ({muscle}) => {
                 currentExercises.map((exercise, index) => (
                     <ExercisePiece
                         key={exercise.name}
-                        name={exercise.name}
+                        exercise={exercise}
                         id={exercise.name}
                         index={index}
                         isInStack={false}

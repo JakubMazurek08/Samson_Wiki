@@ -58,7 +58,12 @@ export const TrainingPlanEditPage = () => {
                     updatedDays[day] = prevState.days[day];
                 }else{
                     const dayExercises = [...prevState.days[day]]
-                    dayExercises.splice(indexToDropOn, 0,exerciseName)
+                    dayExercises.splice(indexToDropOn, 0, {
+                        name:exerciseName,
+                        sets:3,
+                        minReps:8,
+                        maxReps:12
+                    })
                     updatedDays[day] = dayExercises
                 }
             })
@@ -160,7 +165,7 @@ export const TrainingPlanEditPage = () => {
                         </button>
                         </div>
                     </div>
-                    <TrainingPlanBlockDisplay exercises={trainingPlan.days[days[selectedDay]]}/>
+                    <TrainingPlanBlockDisplay setTrainingPlan={setTrainingPlan} setSaved={setSaved} currentDay={selectedDay} exercises={trainingPlan.days[days[selectedDay]]}/>
                 </div>
                 <div className={"w-4/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
                     <ExercisePieceList muscle={selectedMuscle}/>
