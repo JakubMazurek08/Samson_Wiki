@@ -109,82 +109,96 @@ export const TrainingPlanEditPage = () => {
 
     return(
         <DndContext onDragEnd={handleDragEnd}>
-        {
-            userUID?
-                trainingPlan?
-            <main className="w-full flex ">
-                {areYouSurePopup?(
-                        <main
-                            className={`fixed w-screen h-screen top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
-                            <div className={"flex flex-col gap-4 rounded-xl w-[1000px] p-10 bg-true-white"}>
-                                <h1 className={"text-primary-medium font-bold text-4xl text-center"}>You have unsaved changes, are
-                                    you sure that you want to exit without saving?</h1>
+            <div
+                className={"absolute 2xl:hidden w-screen h-screen top-0 left-0 bg-primary-dark flex items-center justify-center"}>
+                <h1 className={"font-bold text-white text-5xl"}>OPEN ON FULLSCREEN, NOT EDDITABLE ON PHONE</h1>
+            </div>
+            {
+                userUID ?
+                    trainingPlan ?
+                        <main className="w-full hidden 2xl:flex">
+                            {areYouSurePopup ? (
+                                    <main
+                                        className={`fixed w-screen h-screen top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
+                                        <div className={"flex flex-col gap-4 rounded-xl w-[1000px] p-10 bg-true-white"}>
+                                            <h1 className={"text-primary-medium font-bold text-4xl text-center"}>You have
+                                                unsaved changes, are
+                                                you sure that you want to exit without saving?</h1>
+                                            <div className={"flex justify-between"}>
+                                                <button
+                                                    onClick={() => {
+                                                        updateExercisesInDatabase()
+                                                        navigate("/plans")
+                                                    }}
+                                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit
+                                                    With Save
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        navigate("/plans")
+                                                    }}
+                                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit
+                                                    Without Saving
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        setAreYouSurePopup(false)
+                                                    }}
+                                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </main>
+                                )
+                                : null}
+                            <div
+                                className={"w-7/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
+                                <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan
+                                    "{trainingPlan.name}"
+                                    :</h1>
                                 <div className={"flex justify-between"}>
-                                <button
-                                    onClick={() => {
-                                        updateExercisesInDatabase()
-                                        navigate("/plans")
-                                    }}
-                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit With Save
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        navigate("/plans")
-                                    }}
-                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit Without Saving
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setAreYouSurePopup(false)
-                                    }}
-                                    className={`px-6 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Cancel
-                                </button>
+                                    <WeekDaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay}/>
+                                    <div>
+                                        <div className={"flex flex-col"}>
+                                            <button
+                                                onClick={() => {
+                                                    updateExercisesInDatabase()
+                                                    setSaved(true);
+                                                }}
+                                                className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Save
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    saved ? navigate("/plans") : setAreYouSurePopup(true);
+                                                }}
+                                                className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <TrainingPlanBlockDisplay setTrainingPlan={setTrainingPlan} setSaved={setSaved}
+                                                          currentDay={selectedDay}
+                                                          exercises={trainingPlan.days[days[selectedDay]]}/>
+                            </div>
+                            <div className={"w-5/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
+                                <ExercisePieceList muscle={selectedMuscle}/>
+                                <div className={"bg-primary-light p-2 flex rounded-[32px]"}>
+                                    <div
+                                        className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2 justify-around"}>
+                                        <ManFront primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle}
+                                                  dontChangeURL={true} height={290}/>
+                                        <ManBack primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle}
+                                                 dontChangeURL={true} height={290}/>
+                                    </div>
+                                    <EquipmentFilterDropdown isDropped={true}/>
                                 </div>
                             </div>
                         </main>
-                    )
-                    : null}
-                <div className={"w-7/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
-                    <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan "{trainingPlan.name}"
-                        :</h1>
-                    <div className={"flex justify-between"}>
-                        <WeekDaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay}/>
-                        <div>
-                            <div className={"flex flex-col"}>
-                        <button
-                            onClick={() => {
-                                updateExercisesInDatabase()
-                                setSaved(true);
-                            }}
-                            className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Save
-                        </button>
-                        <button
-                            onClick={() => {
-                            saved?navigate("/plans"):setAreYouSurePopup(true);
-                            }}
-                            className={`w-40 bg-primary-light rounded-md text-white font-bold text-3xl h-12 mt-8 ml-4 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>Exit
-                        </button>
-                            </div>
-                        </div>
-                    </div>
-                    <TrainingPlanBlockDisplay setTrainingPlan={setTrainingPlan} setSaved={setSaved} currentDay={selectedDay} exercises={trainingPlan.days[days[selectedDay]]}/>
-                </div>
-                <div className={"w-5/12 h-[calc(100vh-5rem)] bg-white flex flex-col items-center p-6"}>
-                    <ExercisePieceList muscle={selectedMuscle}/>
-                    <div className={"bg-primary-light p-2 flex rounded-[32px]"}>
-                        <div className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2 justify-around"}>
-                            <ManFront primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle} dontChangeURL={true} height={290}/>
-                            <ManBack primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle}  dontChangeURL={true} height={290}/>
-                        </div>
-                        <EquipmentFilterDropdown isDropped={true}/>
-                    </div>
-                </div>
-            </main>
+                        :
+                        <h1>Loading...</h1>
                     :
-                    <h1>Loading...</h1>
-                :
-                <h1>u need to be logged in</h1>
-        }
+                    <h1>u need to be logged in</h1>
+            }
         </DndContext>
     )
 }

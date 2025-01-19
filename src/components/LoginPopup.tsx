@@ -74,7 +74,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
                     </div>
                     <div className={"flex flex-col w-full"}>
                         <label className={"text-primary-medium"}>Password</label>
-                        <input {...register("password", {required: true})}
+                        <input type={"password"} {...register("password", {required: true})}
                                className={`mt-1 p-2 ${errors.password?.message ? "border-red-transparent" : "border-primary-light"} border-2 rounded-md`}
                                placeholder={"Type here..."}/>
                     </div>
