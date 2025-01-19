@@ -1,6 +1,7 @@
 import {Outlet, Link} from "react-router-dom";
 import {auth} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
+import {LoginPopup} from "../components/LoginPopup.tsx";
 import {useParams} from "react-router-dom";
 
 import {

@@ -1,28 +1,15 @@
 import {ManFront} from "../components/ManFront.tsx";
-import {storage} from "../lib/firebase.ts";
-import {ref, getDownloadURL} from "firebase/storage"
-import {useEffect, useState} from "react";
+import {ManBack} from "../components/ManBack.tsx";
+import {EquipmentFilterDropdown} from "../components/EquipmentFilterDropdown.tsx";
 
 export const Home = () => {
-
-    const [url,setUrl] = useState("");
-    useEffect(()=>{
-        const storageRef = ref(storage, 'gs://samsonwiki-f8f0a.firebasestorage.app/IMG_3376.mp4' );
-
-        getDownloadURL(storageRef).then((url)=>{
-            console.log(url);
-            setUrl(url);
-        })
-    },[])
     return(
-        <main className="flex p-10 h-[calc(100vh-5rem)]">
-           <ManFront/>
-            {url?
-                <video width="320" height="240" autoPlay controls>
-                    <source src={url} type="video/mp4" />
-                </video>
-            :null}
-
+        <main className="flex lg:ml-20 ml-0 justify-between  p-10 h-[calc(100vh-5rem)]">
+            <div className="w-[1000px] h-[1600px] 2xl:h-[800px]  flex flex-col 2xl:flex-row gap-20 ">
+            <ManFront height={800}/>
+            <ManBack height={800}/>
+            </div>
+            <EquipmentFilterDropdown/>
         </main>
     )
 }

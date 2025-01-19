@@ -1,8 +1,11 @@
 import {Router} from "./components/Router.tsx"
+import {FilterProvider} from "./contexts/FilterProvider.tsx";
 
 function App() {
   return (
-     <Router/>
+      <FilterProvider>
+         <Router/>
+      </FilterProvider>
   )
 }
 export default App
