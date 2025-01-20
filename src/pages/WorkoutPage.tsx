@@ -9,7 +9,7 @@ import {WorkoutExercise} from "../components/WorkoutExercise.tsx";
 
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday"];
 const d = new Date();
-const day = days[d.getDay()];
+const day = days[d.getDay()-1];
 
 export const WorkoutPage = () => {
 
