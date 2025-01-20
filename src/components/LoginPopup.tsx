@@ -1,8 +1,9 @@
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
-import {setDoc,doc, collection} from "firebase/firestore";
+import {setDoc,addDoc, doc, collection} from "firebase/firestore";
 import {auth, db} from "../lib/firebase.ts";
+import {defaultPlan1} from "../constant/defaultWorkoutPlans.ts";
 
 export const LoginPopup = ({setIsLoggingIn}) => {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -16,8 +17,10 @@ export const LoginPopup = ({setIsLoggingIn}) => {
             const userCollectionRef = collection(db, "users");
             await setDoc(doc(userCollectionRef, id), {
                 username: username,
-                creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()).toString()}-${(new Date().getFullYear()).toString()}`,
+                creationDate: `${new Date().getDate().toString()}-${(new Date().getMonth()+1).toString()}-${(new Date().getFullYear()).toString()}`,
             });
+            const trainingPlansRef = collection(db, `users/${id}/trainingPlans`);
+            await addDoc(trainingPlansRef, defaultPlan1);
         } catch (error) {
             console.error("Error adding document: ", error);
         }
@@ -59,7 +62,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
         <>
             <div onClick={()=>{setIsLoggingIn(false)}} className={"w-full h-full fixed"}></div>
             <div className={"bg-white h-3/4 w-[425px] lg:w-[475px] rounded-3xl flex flex-col items-center p-4 z-50"}>
-                <img className="h-60" src="/src/assets/logo/SamsonWikiLogoLight.png" alt=""/>
+                <img className="h-60" src="/logo/SamsonWikiLogoLight.png" alt=""/>
                 <h1 className={"text-6xl text-primary-light font-bold -mt-10"}>{isRegistering?"Sign in":"Log in"}</h1>
                 <button onClick={()=>{setIsRegistering((prevState) => !prevState)}} className={"mt-3"}>Or <span className={"text-primary-light"}>{isRegistering?"Log in":"Create Account"}</span></button>
                 <form className={"w-10/12 mt-10 flex flex-col items-center"} onSubmit={handleSubmit(onsubmit)}>
@@ -74,7 +77,7 @@ export const LoginPopup = ({setIsLoggingIn}) => {
                     </div>
                     <div className={"flex flex-col w-full"}>
                         <label className={"text-primary-medium"}>Password</label>
-                        <input {...register("password", {required: true})}
+                        <input type={"password"} {...register("password", {required: true})}
                                className={`mt-1 p-2 ${errors.password?.message ? "border-red-transparent" : "border-primary-light"} border-2 rounded-md`}
                                placeholder={"Type here..."}/>
                     </div>

@@ -1,6 +1,10 @@
-export const StartPiece = () => {
+import {Hitbox} from "./Hitbox.tsx";
+
+export const StartPiece = ({isInStack,id}) => {
+
     return (
-        <div className={"relative"}>
+        <>
+        <div className={"relative -mt-1 "}>
             <svg className={"fill-secondary-light"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 125"
                  height={125}>
                 <rect className="cls-1" x="326.35" y="0" width="91.59" height="18.59" rx="8.28" ry="8.28"/>
@@ -9,7 +13,8 @@ export const StartPiece = () => {
             <div className={"absolute w-full h-full flex items-end p-2 top-0 left-0"}>
                 <h1 className={"text-primary-medium text-8xl font-bold"}>Start</h1>
             </div>
-            <div id="hitbox" className={"absolute w-[620px] h-32  -top-10 -left-8"}></div>
+            {isInStack ? <Hitbox id={id}/>:null}
         </div>
+        </>
     )
 }

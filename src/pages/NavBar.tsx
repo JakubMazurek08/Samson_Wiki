@@ -2,7 +2,6 @@ import {Outlet, Link} from "react-router-dom";
 import {auth} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
 import {LoginPopup} from "../components/LoginPopup.tsx";
-import {useParams} from "react-router-dom";
 
 import {
     onAuthStateChanged,
@@ -14,7 +13,6 @@ export const NavBar = () => {
     const [signedIn, setSignedIn] = useState(false);
     const [toggleLoginOptions, setToggleLoginOptions] = useState(false);
 
-    const {planId} = useParams();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,26 +30,24 @@ export const NavBar = () => {
 
     return (
         <>
-            {!planId ?
-                <aside
-                    className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 mt-20 -translate-x-80 lg:translate-x-0">
-                    <NavButton label="Training Plans" icon="/src/assets/icons/planning.png" isSmall={false}
-                               linkTo={"/plans"}/>
-                    <NavButton label="ExercisesByMuscle" icon="/src/assets/icons/dumbbell.png" isSmall={false}/>
-                    <div className="flex flex-col p-2 pl-4 py-4 ">
-                        <div className="flex items-center gap-4">
-                            <img className="w-12 h-12 " src={"/src/assets/icons/wrench.png"} alt="icon"/>
-                            <h1 className="text-white font-bold text-2xl">Tools</h1>
-                            <img className="w-8 h-8 ml-12" src={"/src/assets/icons/down-arrow.png"} alt="arrow"/>
-                        </div>
-                        <NavButton label="Calorie Calculator" isSmall={true}/>
-                        <NavButton label="1 Rep Max Calculator" isSmall={true}/>
+            <aside
+                className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 mt-20 -translate-x-80 lg:translate-x-0">
+                <NavButton label="Training Plans" icon="/icons/planning.png" isSmall={false}
+                           linkTo={"/plans"}/>
+                <NavButton label="ExercisesByMuscle" icon="/icons/dumbbell.png" isSmall={false}/>
+                <div className="flex flex-col p-2 pl-4 py-4 ">
+                    <div className="flex items-center gap-4">
+                        <img className="w-12 h-12 " src={"/icons/wrench.png"} alt="icon"/>
+                        <h1 className="text-white font-bold text-2xl">Tools</h1>
+                        <img className="w-8 h-8 ml-12" src={"/icons/down-arrow.png"} alt="arrow"/>
                     </div>
-                </aside>
-            : null}
+                    <NavButton label="Calorie Calculator" isSmall={true} linkTo={"/CalorieCalculator"}/>
+                    <NavButton label="1 Rep Max Calculator" isSmall={true} linkTo={"/OneRep"}/>
+                </div>
+            </aside>
             <header className="h-20  w-screen  bg-primary-dark fixed z-40
               flex items-center justify-between">
-                <Link to="/"><img className="h-20 ml-10" src="/src/assets/logo/SamsonWikiLogoDarkFull.png"
+                <Link to="/"><img className="h-20 ml-10" src="/logo/SamsonWikiLogoDarkFull.png"
                                   alt="SamsonWiki"/></Link>
                 {signedIn ?
                     <div className="relative">
@@ -60,7 +56,7 @@ export const NavBar = () => {
                                 setToggleLoginOptions((prevState) => !prevState)
                             }}
                             className="h-16 w-16 mr-10 bg-secondary-light rounded-full cursor-pointer"
-                            src={'/src/assets/icons/user(1).png'}
+                            src={'/icons/user(1).png'}
                             alt="User Icon"
                         />
                         {toggleLoginOptions && (
@@ -77,7 +73,7 @@ export const NavBar = () => {
                 }
             </header>
 
-            <main className={`pt-20 ${!planId?"lg:ml-80":null}`}>
+            <main className={`pt-20 lg:ml-80`}>
                 <Outlet/>
             </main>
 
