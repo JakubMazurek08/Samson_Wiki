@@ -3,7 +3,7 @@ import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "../lib/firebase.ts";
 import {SmallMuscleDisplay} from "./SmallMuscleDisplay.tsx";
 import LottieView from 'lottie-react';
-import loadingVideoJson from "../assets/animations/loadingVideo.json"
+import loadingVideoJson from "../../public/animations/loadingVideo.json"
 
 export const Exercise = ({exerciseData}) => {
     const lottieRef = useRef();
@@ -72,7 +72,7 @@ export const Exercise = ({exerciseData}) => {
                         <div><span className={"text-primary-light font-black text-3xl"}>3.</span><span className={"ml-2 text-black text-xl"}>{exerciseData.step3}</span></div>
                     </div>
                 </div>
-                <div onMouseEnter={()=>{setToggle(true)}} onMouseLeave={()=>{setToggle(false)}} className={"w-12 h-12 rounded-xl bg-primary-medium mt-20 flex items-center justify-center absolute bottom-8 right-8"}><img className={"w-9 h-9 "} src="/src/assets/icons/search.png" alt=""/></div>
+                <div onMouseEnter={()=>{setToggle(true)}} onMouseLeave={()=>{setToggle(false)}} className={"w-12 h-12 rounded-xl bg-primary-medium mt-20 flex items-center justify-center absolute bottom-8 right-8"}><img className={"w-9 h-9 "} src="/icons/search.png" alt=""/></div>
             </div>
             <div className={`bg-white absolute right-0 top-0 h-full w-[420px] -z-10 rounded-r-3xl hidden ${toggle?"translate-x-[420px]" : null} transition-all duration-300  lg:block `}>
                 <div className={`bg-primary-light rounded-tr-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} h-16 flex pl-8 items-center`}> </div>
