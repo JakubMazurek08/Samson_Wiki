@@ -40,7 +40,7 @@ export const EquipmentFilterDropdown = ({isDropped}) => {
                         className={`flex bg-primary-medium w-56 h-14 ${toggle ? "rounded-t-2xl border-secondary-light border-b-2" : "rounded-2xl"} items-center transition-all duration-300`}>
                     <span className={"text-white font-bold text-2xl ml-2"}>Filter Exercises</span>
                     <img className={`h-8 w-8 mt-2 ml-2 ${toggle ? "rotate-180"  : "rotate-0"} transition-all duration-300`}
-                         src="/src/assets/icons/down-arrow.png" alt=""/>
+                         src="/icons/down-arrow.png" alt=""/>
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${toggle ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"} bg-primary-light rounded-b-2xl`}>
                     <form className={"w-56 rounded-b-2xl bg-primary-light "}>
