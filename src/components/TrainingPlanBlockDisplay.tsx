@@ -7,13 +7,13 @@ import {useEffect} from "react";
 export const TrainingPlanBlockDisplay = ({exercises, setTrainingPlan, currentDay, setSaved}) => {
 
     return (
-        <div className="border-2 h-[600px] border-secondary-medium mt-4 rounded-3xl ">
+        <div className="border-2 h-[530px] border-secondary-medium mt-4 rounded-3xl ">
             <MapInteractionCSS
                 defaultValue={{
                     scale: 1,
                     translation: {x: 150, y: -50}
                 }}
-                minScale={1}
+                minScale={0.5}
                 maxScale={1}
                 translationBounds={{
                     xMax: 330,
