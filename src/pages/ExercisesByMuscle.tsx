@@ -57,15 +57,15 @@ export const ExercisesByMuscle = () => {
 
 
     return (
-        <main className={"flex flex-col lg:items-start  items-center"}>
+        <main className={"flex flex-col lg:items-start bg-white items-center"}>
         <div className={"w-96 2xl:fixed 2xl:right-32 2xl:z-10 lg:ml-20"}>
             <h1 className={"text-7xl text-primary-medium font-bold font-playfair"}>{muscle == "lower-back" ? "Lower back" : null}{muscle == "upper-back" ? "Upper back" : null} {muscle != "lower-back" && muscle != "upper-back" ? capitalizeWords(muscle) : null}</h1>
-            <div className={"w-96 min-h-80 bg-primary-light rounded-[32px] mt-2 border-primary-light border-8"}>
+            <div className={"w-96 min-h-80  bg-primary-light rounded-[32px] mt-2 border-primary-light shadow-lg border-8"}>
                 <div className={"w-full min-h-40 bg-true-white rounded-3xl flex p-2 justify-around"}>
                     <ManFront primary={muscle} height={290}/>
                     <ManBack primary={muscle} height={290}/>
                 </div>
-                <form className={"bg-primary-light"}>
+                <form className={"bg-primary-light rounded-3xl"}>
                     <div className={"flex justify-between relative"}>
                         <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
                         <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>

@@ -47,7 +47,7 @@ export const Exercise = ({exerciseData}) => {
 
     return (
         <div ref={videoWrapperRef} className={`relative min-h-[550px] lg:min-w-[700px]  2xl:w-[1000px] 2xl:mr-[500px]`}>
-            <div className={`bg-white rounded-l-3xl ${!toggle?"rounded-r-3xl":null} transition-all duration-300 h-full`}>
+            <div className={`bg-true-white shadow-lg rounded-l-3xl ${!toggle?"rounded-r-3xl":null} transition-all duration-300 h-full`}>
                 <div className={`bg-primary-light rounded-tl-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} min-h-16 flex pl-8 py-2 items-center`}> <h1 className={"text-secondary-light font-bold text-4xl"}>{exerciseData.name}</h1></div>
                 <div className={"flex justify-around lg:justify-between items-center mb-8"}>
                     {url1?
@@ -74,8 +74,8 @@ export const Exercise = ({exerciseData}) => {
                 </div>
                 <div onMouseEnter={()=>{setToggle(true)}} onMouseLeave={()=>{setToggle(false)}} className={"w-12 h-12 rounded-xl bg-primary-medium mt-20 flex items-center justify-center absolute bottom-8 right-8"}><img className={"w-9 h-9 "} src="/icons/search.png" alt=""/></div>
             </div>
-            <div className={`bg-white absolute right-0 top-0 h-full w-[420px] -z-10 rounded-r-3xl hidden ${toggle?"translate-x-[420px]" : null} transition-all duration-300  lg:block `}>
-                <div className={`bg-primary-light rounded-tr-3xl transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} h-16 flex pl-8 items-center`}> </div>
+            <div className={`bg-true-white absolute right-0 top-0 h-full w-[420px] -z-10 rounded-r-3xl hidden ${toggle?"translate-x-[420px]" : null} transition-all duration-300  lg:block `}>
+                <div className={`bg-primary-light rounded-tr-3xl  transition-all duration-300 ${!toggle?"rounded-tr-3xl":null} h-16 flex pl-8 items-center`}> </div>
                 <div className={"flex flex-col items-center gap-4 p-4 "}>
                  <SmallMuscleDisplay primary={exerciseData.primary} secondary={exerciseData.secondary} ternary={exerciseData.ternary}/>
                     <ExerciseInfoDisplay grip={exerciseData.grip} force={exerciseData.force} difficulty={exerciseData.difficulty}/>
