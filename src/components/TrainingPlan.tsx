@@ -61,7 +61,7 @@ export const TrainingPlan = ({name, id, userUID, getData}) => {
                     <h1>{name}</h1>
                     <img onClick={() => {
                         setIsVerifyDelete(true)
-                    }} src="/icons/delete.png" alt=""/>
+                    }} src="/icons/delete.png" className={"cursor-pointer"} alt=""/>
                 </div>
                 <div className={"flex justify-around  mt-10"}>
                 <button
