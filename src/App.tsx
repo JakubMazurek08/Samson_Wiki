@@ -1,11 +1,14 @@
 import {Router} from "./components/Router.tsx"
 import {FilterProvider} from "./contexts/FilterProvider.tsx";
+import {LoginProvider} from "./contexts/LoginProvider.tsx";
 
 function App() {
   return (
-      <FilterProvider>
-         <Router/>
-      </FilterProvider>
+      <LoginProvider>
+          <FilterProvider>
+              <Router/>
+          </FilterProvider>
+      </LoginProvider>
   )
 }
 export default App

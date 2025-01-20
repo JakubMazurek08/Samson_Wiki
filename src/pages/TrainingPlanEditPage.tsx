@@ -12,6 +12,7 @@ import {ManBack} from "../components/ManBack.tsx";
 import {DndContext, DragEndEvent} from "@dnd-kit/core";
 import {useNavigate} from "react-router-dom";
 import {doc, setDoc} from "firebase/firestore"
+import {LoginPopup} from "../components/LoginPopup.tsx";
 
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday"];
 
@@ -116,7 +117,7 @@ export const TrainingPlanEditPage = () => {
                         <main className="w-full hidden 2xl:flex">
                             {areYouSurePopup ? (
                                     <main
-                                        className={`fixed w-screen h-[calc(100vh-5rem)] top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
+                                        className={`fixed w-screen h-[calc(100vh)] top-0 left-0 items-center justify-center bg-primary-transparent flex z-50`}>
                                         <div className={"flex flex-col gap-4 rounded-xl w-[1000px] p-10 bg-true-white"}>
                                             <h1 className={"text-primary-medium font-bold text-4xl text-center"}>You have
                                                 unsaved changes, are
@@ -149,7 +150,7 @@ export const TrainingPlanEditPage = () => {
                                 )
                                 : null}
                             <div
-                                className={"w-7/12 h-[calc(100vh-5rem)] border-r-4 border-primary-medium p-6 bg-white"}>
+                                className={"w-7/12 h-[calc(100vh-5rem)] p-6 bg-white"}>
                                 <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan
                                     "{trainingPlan.name}"
                                     :</h1>
@@ -181,7 +182,7 @@ export const TrainingPlanEditPage = () => {
                                 <ExercisePieceList muscle={selectedMuscle}/>
                                 <div className={"bg-primary-light p-2 flex rounded-[32px]"}>
                                     <div
-                                        className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2 justify-around"}>
+                                        className={"min-h-40 bg-true-white rounded-3xl w-[350px] justify-around flex p-2"}>
                                         <ManFront primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle}
                                                   dontChangeURL={true} height={290}/>
                                         <ManBack primary={selectedMuscle} setSelectedMuscle={setSelectedMuscle}
@@ -194,7 +195,9 @@ export const TrainingPlanEditPage = () => {
                         :
                         <h1>Loading...</h1>
                     :
-                    <h1>u need to be logged in</h1>
+                    <main className={"w-full relative flex flex-col items-center"}>
+                        <LoginPopup isNotFixed={true}/>
+                    </main>
             }
         </DndContext>
     )

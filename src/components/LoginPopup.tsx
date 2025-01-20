@@ -1,15 +1,16 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {setDoc,addDoc, doc, collection} from "firebase/firestore";
 import {auth, db} from "../lib/firebase.ts";
 import {defaultPlan1} from "../constant/defaultWorkoutPlans.ts";
+import {useLogin} from "../contexts/useLogin.ts";
 
-export const LoginPopup = ({setIsLoggingIn}) => {
+export const LoginPopup = ({setIsLoggingIn, isNotFixed}) => {
     const [isRegistering, setIsRegistering] = useState(false);
     const {register, handleSubmit, formState:{errors}} = useForm();
     const [errorLoggingIn, setErrorLogginIn] = useState(false);
-
+    const {setIsLoginFalse, setIsLoginTrue} = useLogin();
 
 
     const addUser = async (id, username) => {
@@ -58,20 +59,30 @@ export const LoginPopup = ({setIsLoggingIn}) => {
         }
     }
 
+    useEffect(()=>{
+        if(isNotFixed){
+            setIsLoginTrue()
+        }
+        return()=>{(setIsLoginFalse())};
+    },[isNotFixed])
+
     return (
         <>
-            <div onClick={()=>{setIsLoggingIn(false)}} className={"w-full h-full fixed"}></div>
+            <div onClick={()=>{setIsLoggingIn(false)}} className={`w-full h-full ${isNotFixed?null:"fixed"}`}></div>
             <div className={"bg-white h-3/4 w-[425px] lg:w-[475px] rounded-3xl flex flex-col items-center p-4 z-50"}>
                 <img className="h-60" src="/logo/SamsonWikiLogoLight.png" alt=""/>
                 <h1 className={"text-6xl text-primary-light font-bold -mt-10"}>{isRegistering?"Sign in":"Log in"}</h1>
                 <button onClick={()=>{setIsRegistering((prevState) => !prevState)}} className={"mt-3"}>Or <span className={"text-primary-light"}>{isRegistering?"Log in":"Create Account"}</span></button>
                 <form className={"w-10/12 mt-10 flex flex-col items-center"} onSubmit={handleSubmit(onsubmit)}>
                     {errorLoggingIn ?
-                        <h1 className={"text-secondary-medium text-start"}>Wrong email or password</h1> : null}
+                        <h1 className={"text-primary-medium text-start"}>Wrong email or password</h1> : null}
                     <div className={"flex flex-col w-full"}>
                         <label className={"text-primary-medium"}>E-mail</label>
                         <input {...register("email", {
-                            required: true
+                            required: true,
+                            validate: ((email)=>{
+                                return !!(email.includes("@") && (email.includes(".")));
+                            })
                         })} className={`mt-1 p-2 ${errors.email?.message ? "border-red-transparent" : "border-primary-light"} border-2 rounded-md`}
                                placeholder={"Type here..."}/>
                     </div>

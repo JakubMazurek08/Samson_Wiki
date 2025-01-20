@@ -6,10 +6,12 @@ import {auth, db} from "../lib/firebase.ts";
 import {collection, getDocs, query} from "firebase/firestore";
 import {useNavigate, useParams} from "react-router-dom";
 import {WorkoutExercise} from "../components/WorkoutExercise.tsx";
+import {WeekDaySelector} from "../components/WeekDaySelector.tsx";
+import {LoginPopup} from "../components/LoginPopup.tsx";
 
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday","sunday"];
 const d = new Date();
-const day = days[d.getDay()-1];
+const day = d.getDay()-1;
 
 export const WorkoutPage = () => {
 
@@ -20,6 +22,7 @@ export const WorkoutPage = () => {
     const [currentSet, setCurrentSet] = useState(1);
     const [name, setName] = useState(null);
     const [userUID, setUserUID] = useState(null);
+    const [currentDay, setCurrentDay] = useState(day);
 
     const getData = async (uid) => {
         const q = query(collection(db,`users/${uid}/trainingPlans`));
@@ -27,8 +30,10 @@ export const WorkoutPage = () => {
         querySnapshot.forEach((doc) => {
             if(doc.id===planId){
                 setName(doc.data().name);
-                const newTrainingDay =  doc.data().days[day];
-                newTrainingDay.push("finished");
+                const newTrainingDay =  doc.data().days[days[currentDay]];
+                if(newTrainingDay[0]){
+                    newTrainingDay.push("finished");
+                }
                 setTrainingDay(newTrainingDay);
                 setCurrentExerciseIndex(0);
             }
@@ -47,7 +52,7 @@ export const WorkoutPage = () => {
             }
         });
         return () => unsubscribe();
-    }, []);
+    }, [currentDay]);
 
     const finishSet = () => {
         if(currentSet+1>trainingDay[currentExerciseIndex].sets){
@@ -73,13 +78,13 @@ export const WorkoutPage = () => {
                     <main className={"w-full bg-white h-[calc(100vh-5rem)] flex flex-col items-center"}>
                         {trainingDay[currentExerciseIndex]?
                         <div className={"w-[95%] mt-5 flex flex-col items-center"}>
-                            <ProgressBar day={day} name={name} totalExercisesNumber={trainingDay.length} currentExerciseNumber={currentExerciseIndex}/>
+                            <ProgressBar day={days[currentDay]} name={name} totalExercisesNumber={trainingDay.length} currentExerciseNumber={currentExerciseIndex}/>
                             {!(trainingDay[currentExerciseIndex]=="finished")?
                             <>
                             <div className={"w-[85%] h-20 mt-4 flex items-end justify-between"}>
                                 <h1 className={"w-1/2 text-5xl text-primary-medium font-bold"}>{trainingDay[currentExerciseIndex].name}</h1>
                                 <h1>
-                                    <span className={"w-96 text-7xl text-primary-medium font-bold"}>{currentSet}/{trainingDay[currentExerciseIndex].sets}</span>
+                                    <span className={"w-96 text-7xl text-primary-medium font-bold"}>{currentSet}/{trainingDay[currentExerciseIndex].sets} </span>
                                     <span className={"w-96 text-4xl text-primary-medium font-bold"}>{trainingDay[currentExerciseIndex].minReps}-{trainingDay[currentExerciseIndex].maxReps}reps</span>
                                 </h1>
                             </div>
@@ -87,7 +92,7 @@ export const WorkoutPage = () => {
                             <div className={"w-full flex justify-center mt-8"}>
                                 <button
                                     onClick={finishSet}
-                                className={`w-80 bg-primary-light rounded-md text-white font-bold text-4xl h-20 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>
+                                className={`w-80 bg-primary-light rounded-md text-white font-bold text-4xl h-20 hover:bg-primary-medium transition-all duration-300 hover:scale-110`}>
                                     Finished Set
                                 </button>
                             </div>
@@ -111,11 +116,28 @@ export const WorkoutPage = () => {
                             null}
                     </main>
                         :
-                        <h1 className={"text-8xl font-bold text-primary-medium"}>Today is your rest day</h1>
+                        <main className={"w-full bg-white h-[calc(100vh-5rem)] flex flex-col items-center"}>
+                            <h1 className={"text-8xl font-bold text-center text-primary-medium m-20"}>Today is your rest
+                                day...</h1>
+                            <div className={"w-[550px] bg-true-white p-8 mb-10 rounded-xl shadow-lg"}>
+                                <h1 className={"text-primary-medium font-bold text-center text-2xl"}>Would you like to
+                                    do a workout from a different day anyways?</h1>
+                                <WeekDaySelector selectedDay={currentDay} setSelectedDay={setCurrentDay}/>
+                            </div>
+                            <button
+                                onClick={() => {
+                                    navigate("/plans")
+                                }}
+                                className={`w-80 bg-primary-light rounded-md text-white font-bold text-4xl h-20 hover:bg-primary-medium transition-transform duration-300 hover:scale-110`}>
+                                Go Back
+                            </button>
+                        </main>
                     :
                     <h1>Loading...</h1>
                 :
-                <h1>u need to be logged in</h1>
+                <main className={"w-full relative flex flex-col items-center"}>
+                    <LoginPopup isNotFixed={true}/>
+                </main>
         }
         </>
     )

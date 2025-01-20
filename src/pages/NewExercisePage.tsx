@@ -12,7 +12,7 @@ export const NewExercisePage = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
-                if(uid=="GAnZ99ClYyXf3dWFXjNH9uyLSG12"){
+                if(uid=="lM1iJROEnObTtuxcFChGbIhfjYf2"){
                     setIsAdmin(true);
                 }else {
                     setIsAdmin(false);
@@ -37,7 +37,7 @@ export const NewExercisePage = () => {
     };
 
     return (
-        <main className="flex w-[calc(100vw-320px)] h-[calc(100vh-80px)]  flex-col items-center ">
+        <main className="flex w-[calc(100vw-320px)] h-[calc(100vh-80px)] bg-white  flex-col items-center ">
             {isAdmin?
             <form className={" m-16 w-[50vw]"} onSubmit={handleSubmit(submit)}>
                 <h1 className={"text-primary-dark font-bold text-4xl"}>Add New Exercise:</h1>

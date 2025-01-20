@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 import {onAuthStateChanged} from "firebase/auth";
 import {useForm} from "react-hook-form";
 import {TrainingPlan} from "../components/TrainingPlan.tsx";
+import * as domain from "node:domain";
+import {LoginPopup} from "../components/LoginPopup.tsx";
 
 export const TrainingPlansPage = () => {
     const [userUID, setUserUID] = useState(null);
@@ -95,7 +97,9 @@ export const TrainingPlansPage = () => {
 
         </main>
                 :
-                <h1>u need to be logged in</h1>
+                <main className={"w-full relative flex flex-col items-center"}>
+                    <LoginPopup isNotFixed={true}/>
+                </main>
             }
 
         </>

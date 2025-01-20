@@ -1,25 +1,40 @@
 import {Outlet, Link} from "react-router-dom";
-import {auth} from "../lib/firebase.ts";
+import {auth, db} from "../lib/firebase.ts";
 import {useEffect, useState} from "react";
 import {LoginPopup} from "../components/LoginPopup.tsx";
+import {useLogin} from "../contexts/useLogin.ts";
+
 
 import {
     onAuthStateChanged,
     signOut
 } from "firebase/auth";
+import {doc, getDoc} from "firebase/firestore";
 
 export const NavBar = () => {
     const [isLoggingIn, setIsLoggingIn] = useState(false);
     const [signedIn, setSignedIn] = useState(false);
     const [toggleLoginOptions, setToggleLoginOptions] = useState(false);
-
+    const [username, setUsername] = useState("...");
+    const {alreadyLoggingIn} = useLogin();
 
     useEffect(() => {
+        const getUserName = async(uid) => {
+            const userDocRef = doc(db, `users/${uid}`);
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+                setUsername(userDoc.data().username);
+                console.log(userDoc.data());
+            } else {
+                console.log("No such document!");
+            }
+        }
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
                 console.log("logged in as: ", uid);
                 setSignedIn(true);
+                getUserName(uid)
             } else {
                 setSignedIn(false);
             }
@@ -34,7 +49,7 @@ export const NavBar = () => {
                 className="flex flex-col w-80 h-screen bg-primary-medium fixed transition-all duration-300 mt-20 -translate-x-80 lg:translate-x-0">
                 <NavButton label="Training Plans" icon="/icons/planning.png" isSmall={false}
                            linkTo={"/plans"}/>
-                <NavButton label="ExercisesByMuscle" icon="/icons/dumbbell.png" isSmall={false}/>
+                <NavButton label="Exercises By Muscle" icon="/icons/dumbbell.png" isSmall={false}/>
                 <div className="flex flex-col p-2 pl-4 py-4 ">
                     <div className="flex items-center gap-4">
                         <img className="w-12 h-12 " src={"/icons/wrench.png"} alt="icon"/>
@@ -59,21 +74,29 @@ export const NavBar = () => {
                             src={'/icons/user(1).png'}
                             alt="User Icon"
                         />
-                        {toggleLoginOptions && (
                             <div
-                                className="border-primary-light border-2 rounded-md bg-true-white w-20 absolute right-20 top-10">
-                                <button className="p-2" onClick={() => {setToggleLoginOptions(false);signOut(auth)}}>
-                                        Logout
-                                    </button>
+                                className={`shadow-lg rounded-md bg-true-white w-40 absolute transition-all duration-300 origin-top-right right-24  top-14 ${toggleLoginOptions? "scale-100": "scale-0" } `}>
+                                <div className="p-2">Logged In As <span className={"font-bold  text-primary-medium "}>{username}</span>
                                 </div>
-                            )}
-                        </div>
+                                <button className="p-2 hover:bg-[#EEE] w-full rounded-lg transition-all duration-300" onClick={() => {
+                                    setToggleLoginOptions(false);
+                                    signOut(auth)
+                                }}>
+                                    Logout
+                                </button>
+                            </div>
+                    </div>
                     :
-                    <button onClick={()=>{setIsLoggingIn(true)}} className="mr-10 text-white font-bold p-2 w-20 bg-primary-medium rounded-full hover:scale-110 transition-all duration-300 border-2 border-secondary-light">Login</button>
+                    !alreadyLoggingIn?
+                    <button onClick={() => {
+                        setIsLoggingIn(true)
+                    }}
+                            className="mr-10 text-white font-bold p-2 w-20 bg-primary-medium rounded-full hover:scale-110 transition-all duration-300 border-2 border-secondary-light">Login</button>
+                        :null
                 }
             </header>
 
-            <main className={`pt-20 lg:ml-80`}>
+            <main className={`pt-20  bg-white min-h-[calc(100vh)] lg:ml-80`}>
                 <Outlet/>
             </main>
 

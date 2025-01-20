@@ -46,13 +46,13 @@ export const ExercisePieceList = ({muscle}) => {
     return (
 
         <div
-            className={`items-center flex mb-2 border-b-4 border-secondary-medium h-[800px] flex-col gap-2`}
+            className={`items-center flex mb-5 flex-col gap-2`}
         >
             <div className="flex gap-4">
                 <button
                     onClick={goToPreviousPage}
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 bg-primary-light text-white rounded disabled:opacity-50`}
+                    disabled={currentPage == 1}
+                    className={`px-4 py-2 font-bold bg-primary-light text-white rounded disabled:opacity-50`}
                 >
                     Previous
                 </button>
@@ -61,8 +61,8 @@ export const ExercisePieceList = ({muscle}) => {
         </span>
                 <button
                     onClick={goToNextPage}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 bg-primary-light text-white rounded disabled:opacity-50`}
+                    disabled={currentPage == totalPages}
+                    className={`px-4 py-2 font-bold bg-primary-light text-white rounded disabled:opacity-50`}
                 >
                     Next
                 </button>
