@@ -42,9 +42,7 @@ export const EquipmentFilterDropdown = ({isDropped}) => {
                     <img className={`h-8 w-8 mt-2 ml-2 ${toggle ? "rotate-180"  : "rotate-0"} transition-all duration-300`}
                          src="/src/assets/icons/down-arrow.png" alt=""/>
                 </button>
-                
                 <div className={`overflow-hidden transition-all duration-300 ${toggle ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"} bg-primary-light rounded-b-2xl`}>
-
                     <form className={"w-56 rounded-b-2xl bg-primary-light "}>
                         <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
                         <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
@@ -72,7 +70,8 @@ const CheckBox = ({label, name,register})  => {
 
     return(
         <div className={"px-2 my-3"}>
-            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
+            <input className="w-4 h-4 ml-3 mr-2 bg-white rounded-md transition-all duration-300 ease-in-out cursor-pointer
+            text-white mr-4 checked:scale-110" defaultChecked={isChecked} type="checkbox" {...register(name)} />
             <span className={"text-white text-xl"}>{label}</span>
         </div>
     )

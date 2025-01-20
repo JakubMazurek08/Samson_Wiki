@@ -26,8 +26,24 @@ export default {
       'mono': ['ui-monospace', 'SFMono-Regular'],
       'playfair' : ['Playfair Display'],
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        checkboxChecked: {
+          '0%': { transform: 'scale(0.8)', opacity: 0.5 },
+          '50%': { transform: 'scale(1.2)', opacity: 1 },
+          '100%': { transform: 'scale(1)', opacity: 1 },
+        },
+        checkboxUnchecked: {
+          '0%': { transform: 'scale(1)', opacity: 1 },
+          '50%': { transform: 'scale(1.2)', opacity: 0.5 },
+          '100%': { transform: 'scale(0.8)', opacity: 0 },
+        },
+      },
+      animation: {
+        checkboxChecked: 'checkboxChecked 0.3s ease-in-out',
+        checkboxUnchecked: 'checkboxUnchecked 0.3s ease-in-out',
+      },
+    },
   },
   plugins: [],
 }
-

@@ -103,8 +103,9 @@ const CheckBox = ({label, name, register}) => {
 
     return (
         <div className={"px-2 my-3 flex w-1/2"}>
-            <input className="text-white mr-4" defaultChecked={isChecked} type="checkbox" {...register(name)} />
-            <span className={"text-white text-xl"}>{label}</span>
+            <input className="w-4 h-4 ml-2 mr-3 mt-2 bg-white rounded-md transition-all duration-300 ease-in-out cursor-pointer
+            checked:bg-blue-500 checked:scale-125 " defaultChecked={isChecked} type="checkbox" {...register(name)} />
+            <span className={"text-white text-xl "}>{label}</span>
         </div>
     )
 }
