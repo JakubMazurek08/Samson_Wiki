@@ -1,7 +1,6 @@
 # Samson Wiki
 
 Samson Wiki is a web application designed to explore exercises for different muscle groups, calculate calories, track workouts, and utilize tools like the One Rep Max calculator. The project supports user login, enabling a personalized experience.
-
 ## Features
 
 - **Muscle Exploration:** Click on any muscle group to view related exercise videos.
@@ -21,7 +20,7 @@ Samson Wiki is a web application designed to explore exercises for different mus
 2. Navigate to the project directory:
 
    ```bash
-   cd Samson-Wiki
+   cd Samson_Wiki
    ```
 
 3. Install dependencies:
@@ -48,3 +47,5 @@ Samson Wiki is a web application designed to explore exercises for different mus
 Samson Wiki offers a comprehensive toolset for fitness enthusiasts and athletes looking to enhance their training routines. By providing a combination of muscle-focused exercise libraries, calculators, and personalized workout planning, this project aims to be a one-stop solution for improving strength, endurance, and overall fitness. The user account system allows users to save progress and track their development over time.
 
 Whether you're new to working out or an experienced athlete, Samson Wiki helps you stay on top of your fitness goals.
+
+![SamsonWikiLogoDarkFull.png](public/logo/SamsonWikiLogoDarkFull.png)
