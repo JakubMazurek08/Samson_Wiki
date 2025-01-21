@@ -57,7 +57,7 @@ export const CalorieCalculator = () => {
     return (
             <div className="w-full flex flex-col items-center bg-white h-[calc(100vh-5rem)]">
                 <h1 className={"text-primary-medium font-bold text-6xl mt-20 mb-10"}>Calorie Calculator</h1>
-                <form className={"bg-true-white w-[400px] lg:w-[500px] p-4 flex flex-col gap-4 rounded-3xl"} onSubmit={handleSubmit(onSubmit)}>
+                <form className={"bg-true-white shadow-lg w-[400px] lg:w-[500px] p-4 flex flex-col gap-4 rounded-3xl"} onSubmit={handleSubmit(onSubmit)}>
                     <div className={"flex flex-col w-full"} id="form">
                         <label className={"text-primary-medium"}>Gender</label>
                         <select className={`mt-1 p-2 border-primary-light border-2 rounded-md`} {...register("sex")}>
