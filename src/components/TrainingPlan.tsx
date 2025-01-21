@@ -57,11 +57,11 @@ export const TrainingPlan = ({name, id, userUID, getData}) => {
                 : null}
             <div className={"w-[420px] bg-true-white shadow-lg  rounded-2xl h-[200px]"}>
                 <div
-                    className={"bg-primary-light rounded-t-[14px] h-16 text-secondary-light font-bold text-4xl flex flex-row justify-between p-2"}>
+                    className={"bg-primary-light rounded-t-[14px] h-16 text-secondary-light font-bold text-4xl flex flex-row items-center justify-between pl-4 p-2"}>
                     <h1>{name}</h1>
                     <img onClick={() => {
                         setIsVerifyDelete(true)
-                    }} src="/icons/delete.png" className={"cursor-pointer"} alt=""/>
+                    }} src="/icons/delete.png" className={"cursor-pointer w-10 h-10"} alt=""/>
                 </div>
                 <div className={"flex justify-around  mt-10"}>
                 <button
