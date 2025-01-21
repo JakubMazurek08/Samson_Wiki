@@ -45,7 +45,7 @@ export const WorkoutExercise = ({currentExerciseName}) => {
         <>
             {
                 exerciseData?
-                    <div className={"flex w-[90%] h-[545px] bg-true-white shadow- mt-4 rounded-3xl"}>
+                    <div className={"flex w-[90%] h-[545px] shadow-lg bg-true-white shadow- mt-4 rounded-3xl"}>
                         <div ref={videoWrapperRef}
                              className={`relative w-full xl:w-2/3`}>
                             <div
