@@ -87,7 +87,7 @@ export const TrainingPlansPage = () => {
                             setIsAddingNewTrainingPlan(true)
                         }} className={"h-[80px] cursor-pointer"} src="/icons/more.png" alt=""/>
             </div>
-            <div className={"w-full mt-10 border-primary-medium border-x-4 border-t-4 rounded-3xl flex-1 p-10 flex flex-wrap flex-row  gap-20 "}>
+            <div className={"w-full mt-10  rounded-3xl flex-1 p-10 flex flex-wrap flex-row  gap-20 "}>
                 {trainingPlans[0]?
                     trainingPlans.map((trainingPlan) => (
                         <TrainingPlan name={trainingPlan[0].name} id={trainingPlan[1]} key={trainingPlan[1]} userUID={userUID} getData={getData} />

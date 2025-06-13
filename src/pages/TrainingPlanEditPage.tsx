@@ -154,10 +154,10 @@ export const TrainingPlanEditPage = () => {
                                 <h1 className={"text-primary-medium text-6xl font-bold isD"}>Editing Plan
                                     "{trainingPlan.name}"
                                     :</h1>
-                                <div className={"flex justify-between"}>
+                                <div className={"flex justify-between items-end"}>
                                     <WeekDaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay}/>
                                     <div>
-                                        <div className={"flex flex-col"}>
+                                        <div className={"flex"}>
                                             <button
                                                 onClick={() => {
                                                     updateExercisesInDatabase()

@@ -25,12 +25,12 @@ export const EquipmentFilterDropdown = ({isDropped}) => {
         <div className={" flex-col items-center hidden md:flex p-4"}>
             {isDropped ?
             <form className={"w-56 rounded-b-2xl bg-primary-light"}>
-                <CheckBox label={"Barbell"} name={"barbell"} register={register}/>
-                <CheckBox label={"Dumbbell"} name={"dumbbell"} register={register}/>
-                <CheckBox label={"Machine"} name={"machine"} register={register}/>
-                <CheckBox label={"Cables"} name={"cables"} register={register}/>
-                <CheckBox label={"smith machine"} name={"smith machine"} register={register}/>
-                <CheckBox label={"Bodyweight"} name={"bodyweight"} register={register}/>
+                <CheckBox white={true} label={"Barbell"} name={"barbell"} register={register}/>
+                <CheckBox white={true} label={"Dumbbell"} name={"dumbbell"} register={register}/>
+                <CheckBox white={true} label={"Machine"} name={"machine"} register={register}/>
+                <CheckBox white={true} label={"Cables"} name={"cables"} register={register}/>
+                <CheckBox white={true} label={"smith machine"} name={"smith machine"} register={register}/>
+                <CheckBox white={true} label={"Bodyweight"} name={"bodyweight"} register={register}/>
             </form>
             :
                 <>
@@ -63,16 +63,16 @@ export const EquipmentFilterDropdown = ({isDropped}) => {
     )
 }
 
-const CheckBox = ({label, name,register})  => {
+const CheckBox = ({label, name,register, white})  => {
     const {selectedFilters} = useFilter();
     const isChecked = selectedFilters.includes(name);
 
 
     return(
         <div className={"px-2 my-3"}>
-            <input className="w-4 h-4 ml-3 mr-2 bg-white rounded-md transition-all duration-300 ease-in-out cursor-pointer
-            text-white mr-4 checked:scale-110" defaultChecked={isChecked} type="checkbox" {...register(name)} />
-            <span className={"text-black text-xl"}>{label}</span>
+            <input className={"w-4 h-4 ml-3 mr-2 bg-white rounded-md transition-all duration-300 ease-in-out cursor-pointer mr-4 checked:scale-110" }
+                   defaultChecked={isChecked} type="checkbox" {...register(name)} />
+            <span className={`${white? 'text-white' : 'text-black'} text-xl`}>{label}</span>
         </div>
     )
 }

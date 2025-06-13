@@ -55,7 +55,7 @@ export const NavBar = () => {
                             <div className="relative">
                                 <img
                                     onClick={() => setToggleLoginOptions(prev => !prev)}
-                                    className="h-12 w-12 rounded-full cursor-pointer bg-secondary-light"
+                                    className="size-8 rounded-full cursor-pointer bg-secondary-light"
                                     src="/icons/user(1).png"
                                     alt="User"
                                 />
