@@ -13,6 +13,7 @@ export default {
       "primary-dark":"#000814",
       "primary-medium":"#001D3D",
       "primary-light":"#003566",
+      "primary-very-light":"#0070dc",
       "primary-transparent":"rgba(0,53,102,0.5)",
       "secondary-medium":"#FFC40D",
       "secondary-light":"#FFD60A",
